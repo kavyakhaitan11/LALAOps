@@ -604,6 +604,13 @@
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
     renderCurrentView();
+
+    if (viewName === 'manager-dashboard' && !isManagerUnlocked()) {
+      setTimeout(() => {
+        const input = document.getElementById('manager-passcode-input');
+        if (input) input.focus();
+      }, 150);
+    }
   }
 
   function handleHashChange() {
@@ -615,8 +622,41 @@
     }
   }
 
+  // --- Manager Security & Passcode Helpers ---
+  function isManagerUnlocked() {
+    return sessionStorage.getItem('lalaops_manager_auth') === 'true';
+  }
+
+  function updateSidebarManagerLockState() {
+    const lockIcon = document.getElementById('sidebar-manager-lock-icon');
+    if (!lockIcon) return;
+    if (isManagerUnlocked()) {
+      lockIcon.innerText = 'lock_open';
+      lockIcon.className = 'material-symbols-outlined text-[15px] text-emerald-600 ml-auto';
+      lockIcon.title = 'Console Unlocked';
+    } else {
+      lockIcon.innerText = 'lock';
+      lockIcon.className = 'material-symbols-outlined text-[15px] text-slate-400 ml-auto';
+      lockIcon.title = 'Password Protected';
+    }
+  }
+
   // --- 1. Manager Operations Dashboard Renderer ---
   function renderManagerDashboard() {
+    updateSidebarManagerLockState();
+
+    const lockScreen = document.getElementById('manager-lock-screen');
+    const unlockedContent = document.getElementById('manager-unlocked-content');
+
+    if (!isManagerUnlocked()) {
+      if (lockScreen) lockScreen.classList.remove('hidden');
+      if (unlockedContent) unlockedContent.classList.add('hidden');
+      return;
+    }
+
+    if (lockScreen) lockScreen.classList.add('hidden');
+    if (unlockedContent) unlockedContent.classList.remove('hidden');
+
     const metrics = store.getMetrics();
     const tasks = store.getAll();
 
@@ -904,7 +944,7 @@
     const isUnassigned = !task.assignee || task.assignee === 'Unassigned';
     const timing = formatTaskTiming(task);
 
-    card.className = `kanban-card elevation-1 rounded-xl p-3 flex flex-col gap-2 relative bg-white ${isWaitingClient ? 'card-waiting-client' : isUnassigned ? 'card-unassigned' : timing.isOverdue ? 'card-overdue' : ''}`;
+    card.className = `kanban-card elevation-1 rounded-xl p-3 flex flex-col gap-2 relative bg-white transition-all ${isWaitingClient ? 'card-waiting-client' : isUnassigned ? 'card-unassigned' : timing.isOverdue ? 'card-overdue' : ''}`;
     card.setAttribute('draggable', 'true');
     card.setAttribute('data-task-id', task.id);
 
@@ -923,51 +963,50 @@
         <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${priorityClass}">[${task.priority}]</span>
       </div>
 
-      <div class="font-label-md font-semibold text-slate-900 leading-snug line-clamp-2">
+      <div class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
         ${escapeHtml(task.title)}
       </div>
 
       <!-- Specific Contexts for Waiting on Client or Needs Clarification -->
       ${isWaitingClient && task.clientWaitReason ? `
-        <div class="p-1.5 rounded bg-sky-50 border border-sky-200 text-sky-900 text-[11px] flex items-start gap-1">
-          <span class="material-symbols-outlined text-sky-600 text-[14px] flex-shrink-0 mt-0.5">hourglass_top</span>
+        <div class="p-1.5 rounded-lg bg-sky-50/80 border border-sky-200/90 text-sky-900 text-[11px] flex items-start gap-1">
+          <span class="material-symbols-outlined text-sky-600 text-[13px] flex-shrink-0 mt-0.5">hourglass_top</span>
           <span class="line-clamp-2">${escapeHtml(task.clientWaitReason)}</span>
         </div>
       ` : ''}
 
       ${task.status === 'needs_clarification' && task.clarificationNote ? `
-        <div class="p-1.5 rounded bg-amber-50 border border-amber-200 text-amber-900 text-[11px] flex items-start gap-1">
-          <span class="material-symbols-outlined text-amber-600 text-[14px] flex-shrink-0 mt-0.5">help</span>
+        <div class="p-1.5 rounded-lg bg-amber-50/80 border border-amber-200/90 text-amber-900 text-[11px] flex items-start gap-1">
+          <span class="material-symbols-outlined text-amber-600 text-[13px] flex-shrink-0 mt-0.5">help</span>
           <span class="line-clamp-2">${escapeHtml(task.clarificationNote)}</span>
         </div>
       ` : ''}
 
-      <div class="flex items-center justify-between pt-1 border-t border-slate-100 text-xs text-slate-500">
-        <div class="flex items-center gap-1.5">
+      <!-- Clean Single Footer Row -->
+      <div class="pt-2 mt-0.5 border-t border-slate-100 flex items-center justify-between gap-1.5 text-xs">
+        <div class="flex items-center gap-1.5 min-w-0">
           ${isUnassigned ? `
             <span class="w-5 h-5 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-[10px]">?</span>
-            <span class="font-bold text-purple-700">Unassigned</span>
+            <span class="font-bold text-purple-700 text-[11px]">Unassigned</span>
           ` : `
             <img src="${task.assigneeAvatar}" alt="${task.assignee}" class="w-5 h-5 rounded-full object-cover ring-1 ring-slate-200" title="${task.assignee}">
-            <span class="truncate max-w-[85px] font-medium text-slate-700">${escapeHtml(task.assignee.split(' ')[0])}</span>
+            <span class="truncate max-w-[75px] font-medium text-slate-700 text-[11px]">${escapeHtml(task.assignee.split(' ')[0])}</span>
           `}
         </div>
-        <span class="font-code text-[11px] ${timing.badgeClass}">
-          ${timing.text}
-        </span>
-      </div>
 
-      <!-- Quick Move Pipeline Controls -->
-      <div class="pt-1 flex items-center justify-between border-t border-slate-100 text-[11px]">
-        <span class="text-slate-400 font-mono text-[10px]">Stage:</span>
-        <select class="bg-slate-50 border border-slate-200 rounded text-[11px] font-semibold text-slate-700 px-1 py-0.5 focus:outline-none" onchange="window.LalaApp.moveTask('${task.id}', this.value)">
-          <option value="new_request" ${task.status === 'new_request' ? 'selected' : ''}>1. New Request</option>
-          <option value="needs_clarification" ${task.status === 'needs_clarification' ? 'selected' : ''}>2. Clarify</option>
-          <option value="ready_to_assign" ${task.status === 'ready_to_assign' ? 'selected' : ''}>3. Ready</option>
-          <option value="in_progress" ${task.status === 'in_progress' ? 'selected' : ''}>4. In Progress</option>
-          <option value="waiting_on_client" ${task.status === 'waiting_on_client' ? 'selected' : ''}>5. Client Hold</option>
-          <option value="done" ${task.status === 'done' ? 'selected' : ''}>6. Done</option>
-        </select>
+        <div class="flex items-center gap-1 flex-shrink-0">
+          <span class="font-code text-[10px] ${timing.badgeClass}">
+            ${timing.text}
+          </span>
+          <select class="bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded text-[10px] font-medium text-slate-600 px-1 py-0.5 focus:outline-none cursor-pointer" title="Quick change stage" onchange="window.LalaApp.moveTask('${task.id}', this.value)">
+            <option value="new_request" ${task.status === 'new_request' ? 'selected' : ''}>New</option>
+            <option value="needs_clarification" ${task.status === 'needs_clarification' ? 'selected' : ''}>Clarify</option>
+            <option value="ready_to_assign" ${task.status === 'ready_to_assign' ? 'selected' : ''}>Ready</option>
+            <option value="in_progress" ${task.status === 'in_progress' ? 'selected' : ''}>In Prog</option>
+            <option value="waiting_on_client" ${task.status === 'waiting_on_client' ? 'selected' : ''}>Client</option>
+            <option value="done" ${task.status === 'done' ? 'selected' : ''}>Done</option>
+          </select>
+        </div>
       </div>
     `;
 
@@ -1401,6 +1440,56 @@
       renderCurrentView();
       showToast('Persona Switched', `Now viewing workspace as ${name}`, 'info');
     },
+    // Manager Security & Passcode Handlers
+    handleManagerLogin: (e) => {
+      if (e) e.preventDefault();
+      const input = document.getElementById('manager-passcode-input');
+      const err = document.getElementById('manager-auth-error');
+      const card = document.querySelector('#manager-lock-screen .lock-card');
+      const val = (input ? input.value : '').trim();
+
+      // Accepted passcodes: ops2026, admin, 1234
+      if (val === 'ops2026' || val === 'admin' || val === '1234') {
+        if (err) err.classList.add('hidden');
+        sessionStorage.setItem('lalaops_manager_auth', 'true');
+        updateSidebarManagerLockState();
+        showToast('Manager Console Unlocked', 'Access to triage, queue, and capacity controls granted.', 'success');
+        renderManagerDashboard();
+      } else {
+        if (err) err.classList.remove('hidden');
+        if (card) {
+          card.classList.add('shake-error');
+          setTimeout(() => card.classList.remove('shake-error'), 400);
+        }
+        if (input) {
+          input.focus();
+          input.select();
+        }
+      }
+    },
+    quickFillManagerPasscode: () => {
+      const input = document.getElementById('manager-passcode-input');
+      if (input) {
+        input.value = 'ops2026';
+        window.LalaApp.handleManagerLogin(new Event('submit'));
+      }
+    },
+    lockManagerDashboard: () => {
+      sessionStorage.removeItem('lalaops_manager_auth');
+      updateSidebarManagerLockState();
+      showToast('Console Locked', 'Manager Operations session locked.', 'info');
+      renderManagerDashboard();
+    },
+    togglePasswordVisibility: (inputId, btn) => {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+      const isPassword = input.type === 'password';
+      input.type = isPassword ? 'text' : 'password';
+      if (btn) {
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (icon) icon.innerText = isPassword ? 'visibility_off' : 'visibility';
+      }
+    },
     openTaskDetail: (id) => {
       const task = store.getById(id);
       if (task) {
@@ -1471,6 +1560,7 @@
 
   // --- Event Listeners Initialization ---
   document.addEventListener('DOMContentLoaded', () => {
+    updateSidebarManagerLockState();
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
 
@@ -1518,11 +1608,11 @@
     document.querySelectorAll('.filter-pill').forEach(pill => {
       pill.addEventListener('click', () => {
         document.querySelectorAll('.filter-pill').forEach(p => {
-          p.classList.remove('bg-primary-container', 'text-on-primary', 'active');
-          p.classList.add('bg-white', 'text-slate-600');
+          p.classList.remove('bg-primary-container', 'text-white', 'active', 'shadow-xs');
+          p.classList.add('text-slate-600');
         });
-        pill.classList.add('bg-primary-container', 'text-on-primary', 'active');
-        pill.classList.remove('bg-white', 'text-slate-600');
+        pill.classList.add('bg-primary-container', 'text-white', 'active', 'shadow-xs');
+        pill.classList.remove('text-slate-600');
 
         const filter = pill.getAttribute('data-filter') || 'all';
         currentTaskFilter = filter;

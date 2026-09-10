@@ -106,9 +106,12 @@
       <div class="px-space-base py-space-sm">
         <div class="text-outline text-[11px] font-semibold uppercase tracking-wider mb-2 px-space-xs font-mono">Operations Execution</div>
         <nav class="flex flex-col gap-1">
-          <a class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container hover:text-on-surface text-sm font-medium" data-path="manager-dashboard" href="#manager-dashboard">
-            <span class="material-symbols-outlined text-[18px]">dashboard</span>
-            <span>Manager Dashboard</span>
+          <a class="nav-item flex items-center justify-between px-3 py-2 rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container hover:text-on-surface text-sm font-medium" data-path="manager-dashboard" href="#manager-dashboard">
+            <div class="flex items-center gap-2.5">
+              <span class="material-symbols-outlined text-[18px]">dashboard</span>
+              <span>Manager Dashboard</span>
+            </div>
+            <span id="sidebar-manager-lock-icon" class="material-symbols-outlined text-[14px] text-slate-400" title="Password Protected">lock</span>
           </a>
           <a class="nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container hover:text-on-surface text-sm font-medium" data-path="task-board" href="#task-board">
             <span class="material-symbols-outlined text-[18px]">view_kanban</span>
@@ -193,81 +196,141 @@
     <!-- MAIN CONTENT CONTAINER -->
     <main class="relative pt-16 bg-background min-h-screen w-full px-layout-margin-desktop pb-12">
 
-      <!-- THE 6 OPERATIONAL ESSENTIALS QUICK BAR -->
-      <div class="mt-4 mb-2 p-3 bg-white rounded-xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3">
+      <!-- UNIFIED TELEMETRY STRIP (6 OPERATIONAL ESSENTIALS) -->
+      <div class="mt-3 mb-4 px-4 py-2.5 bg-white rounded-xl border border-slate-200/80 shadow-xs flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-2">
-          <span class="text-xs font-bold text-slate-900 font-mono uppercase tracking-wider flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[18px] text-primary">verified</span>
-            <span>Operations Hub:</span>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-800 font-mono">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-soft-pulse"></span>
+            <span>Operations Telemetry</span>
           </span>
-          <span class="text-xs text-slate-500 hidden md:inline">One place for WhatsApp, Email & Spreadsheet requests</span>
+          <span class="text-slate-300 hidden md:inline">|</span>
+          <span class="text-[11px] text-slate-500 hidden md:inline">Unified intake: WhatsApp • Email • Spreadsheets</span>
         </div>
-        <div class="flex flex-wrap items-center gap-2 text-xs">
+
+        <div class="flex flex-wrap items-center gap-1 text-xs">
           <!-- 1. What needs to be done -->
-          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'all\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg bg-surface-container-low hover:bg-slate-100 text-slate-800 border border-slate-200 font-medium flex items-center gap-1.5 transition-colors" title="Filter to all active tasks that need to be done">
-            <span class="text-primary font-bold">1. What:</span>
+          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'all\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg hover:bg-slate-100 text-slate-700 font-medium flex items-center gap-1.5 transition-colors border border-transparent hover:border-slate-200" title="Filter to active requests">
+            <span class="text-slate-400 font-mono text-[11px]">1. What:</span>
             <span id="ess-count-what" class="font-mono font-bold text-slate-900">8 Active</span>
           </button>
 
+          <span class="text-slate-200 hidden sm:inline">•</span>
+
           <!-- 2. Who is responsible -->
-          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'unassigned\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg bg-purple-50 hover:bg-purple-100 text-purple-900 border border-purple-200 font-medium flex items-center gap-1.5 transition-colors" title="Filter to requests needing an owner">
-            <span class="text-purple-700 font-bold">2. Who:</span>
-            <span id="ess-count-who" class="font-mono font-bold text-purple-800">2 Unassigned</span>
+          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'unassigned\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg hover:bg-purple-50 text-slate-700 hover:text-purple-900 font-medium flex items-center gap-1.5 transition-colors border border-transparent hover:border-purple-200" title="Filter to requests needing an owner">
+            <span class="text-slate-400 font-mono text-[11px]">2. Who:</span>
+            <span id="ess-count-who" class="font-mono font-bold text-purple-700">2 Unassigned</span>
           </button>
+
+          <span class="text-slate-200 hidden sm:inline">•</span>
 
           <!-- 3. What the priority is -->
-          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'p0\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg bg-red-50 hover:bg-red-100 text-red-900 border border-red-200 font-medium flex items-center gap-1.5 transition-colors" title="Filter to urgent P0 tasks">
-            <span class="text-red-700 font-bold">3. Priority:</span>
-            <span id="ess-count-priority" class="font-mono font-bold text-red-800">2 Urgent P0</span>
+          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'p0\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg hover:bg-red-50 text-slate-700 hover:text-red-900 font-medium flex items-center gap-1.5 transition-colors border border-transparent hover:border-red-200" title="Filter to urgent P0 tasks">
+            <span class="text-slate-400 font-mono text-[11px]">3. Priority:</span>
+            <span id="ess-count-priority" class="font-mono font-bold text-red-600">2 Urgent P0</span>
           </button>
+
+          <span class="text-slate-200 hidden sm:inline">•</span>
 
           <!-- 4. What the current status is -->
-          <button onclick="window.LalaApp.setView('manager-dashboard')" class="px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 font-medium flex items-center gap-1.5 transition-colors" title="View breakdown of internal status vs client hold">
-            <span class="text-blue-700 font-bold">4. Status:</span>
-            <span id="ess-count-status" class="font-mono font-bold text-blue-800">6 Us / 2 Client</span>
+          <button onclick="window.LalaApp.setView('manager-dashboard')" class="px-2.5 py-1 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-900 font-medium flex items-center gap-1.5 transition-colors border border-transparent hover:border-blue-200" title="View breakdown of internal status vs client hold">
+            <span class="text-slate-400 font-mono text-[11px]">4. Status:</span>
+            <span id="ess-count-status" class="font-mono font-bold text-blue-700">6 Us / 2 Client</span>
           </button>
+
+          <span class="text-slate-200 hidden sm:inline">•</span>
 
           <!-- 5. What needs a follow-up -->
-          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'needs-followup\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 font-medium flex items-center gap-1.5 transition-colors" title="Filter to requests requiring follow-up">
-            <span class="text-amber-700 font-bold flex items-center gap-1">
-              <span class="material-symbols-outlined text-[13px]">notification_important</span>
-              <span>5. Follow-up:</span>
-            </span>
-            <span id="ess-count-followup" class="font-mono font-bold text-amber-800">4 Pending</span>
+          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'needs-followup\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg hover:bg-amber-50 text-slate-700 hover:text-amber-900 font-medium flex items-center gap-1.5 transition-colors border border-transparent hover:border-amber-200" title="Filter to requests requiring follow-up">
+            <span class="text-slate-400 font-mono text-[11px]">5. Follow-up:</span>
+            <span id="ess-count-followup" class="font-mono font-bold text-amber-700">4 Pending</span>
           </button>
 
+          <span class="text-slate-200 hidden sm:inline">•</span>
+
           <!-- 6. What has already been done -->
-          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'already-done\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 font-medium flex items-center gap-1.5 transition-colors" title="Filter to completed closed tasks">
-            <span class="text-emerald-700 font-bold flex items-center gap-1">
-              <span class="material-symbols-outlined text-[13px]">check_circle</span>
-              <span>6. Done:</span>
-            </span>
-            <span id="ess-count-done" class="font-mono font-bold text-emerald-800">2 Closed</span>
+          <button onclick="window.LalaApp.setView('task-board'); const b = document.querySelector('[data-filter=\'already-done\']'); if(b) b.click();" class="px-2.5 py-1 rounded-lg hover:bg-emerald-50 text-slate-700 hover:text-emerald-900 font-medium flex items-center gap-1.5 transition-colors border border-transparent hover:border-emerald-200" title="Filter to completed closed tasks">
+            <span class="text-slate-400 font-mono text-[11px]">6. Done:</span>
+            <span id="ess-count-done" class="font-mono font-bold text-emerald-700">2 Closed</span>
           </button>
         </div>
       </div>
 
       <!-- ======================================================================== -->
-      <!-- VIEW 1: MANAGER OPERATIONS DASHBOARD                                      -->
+      <!-- VIEW 1: MANAGER OPERATIONS DASHBOARD (PASSWORD PROTECTED)                 -->
       <!-- ======================================================================== -->
       <section id="view-manager-dashboard" class="view-section active py-4">
-        <!-- Dashboard Header -->
-        <div class="flex flex-wrap items-center justify-between gap-space-md mb-5">
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-900 font-mono text-xs font-semibold">Triage & Queue Control</span>
-              <span class="text-slate-400">•</span>
-              <span class="text-xs text-slate-500 font-mono">Pipeline Health Monitor</span>
+
+        <!-- 🔒 MANAGER PASSWORD LOCK SCREEN -->
+        <div id="manager-lock-screen" class="py-12 flex items-center justify-center min-h-[500px]">
+          <div class="lock-card max-w-md w-full rounded-2xl p-8 text-center relative overflow-hidden border border-slate-200">
+            <div class="w-16 h-16 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mx-auto mb-4 text-primary shadow-xs">
+              <span class="material-symbols-outlined text-[32px]">shield_lock</span>
             </div>
-            <h1 class="text-2xl font-bold text-on-surface tracking-tight">Manager Operations Dashboard</h1>
-          </div>
-          <div class="flex items-center gap-3">
-            <button id="trigger-batch-chase" class="px-4 py-2 rounded-lg bg-primary text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm hover:bg-primary-container transition-all active:scale-[0.99]" type="button">
-              <span class="material-symbols-outlined text-[16px]">notifications_active</span>
-              <span>Nudge Internal Overdues</span>
-            </button>
+            
+            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 text-[10px] font-bold font-mono tracking-wider uppercase mb-2 border border-blue-100">
+              Restricted Area
+            </span>
+            <h2 class="text-xl font-bold text-slate-900 tracking-tight mb-1.5">Manager Operations Console</h2>
+            <p class="text-xs text-slate-500 mb-6 leading-relaxed">
+              Queue triage, team capacity management, and client SLA overrides require administrative authorization.
+            </p>
+
+            <form id="manager-auth-form" onsubmit="window.LalaApp.handleManagerLogin(event)" class="space-y-4">
+              <div class="text-left">
+                <label for="manager-passcode-input" class="block text-xs font-semibold text-slate-700 mb-1.5">Manager Access Passcode</label>
+                <div class="relative flex items-center">
+                  <span class="material-symbols-outlined absolute left-3 text-slate-400 text-[18px]">key</span>
+                  <input id="manager-passcode-input" type="password" placeholder="Enter manager passcode..." autocomplete="current-password" class="w-full h-10 pl-9 pr-10 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono tracking-widest text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all"/>
+                  <button type="button" onclick="window.LalaApp.togglePasswordVisibility('manager-passcode-input', this)" class="absolute right-3 text-slate-400 hover:text-slate-600 focus:outline-none" title="Toggle password visibility">
+                    <span class="material-symbols-outlined text-[18px]">visibility</span>
+                  </button>
+                </div>
+                <div id="manager-auth-error" class="hidden text-[11px] text-red-600 font-medium mt-1.5 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">error</span>
+                  <span>Incorrect passcode. Please try again.</span>
+                </div>
+              </div>
+
+              <button type="submit" class="w-full h-10 bg-primary hover:bg-primary-container text-white font-semibold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 active:scale-[0.99]">
+                <span class="material-symbols-outlined text-[18px]">lock_open</span>
+                <span>Unlock Manager Dashboard</span>
+              </button>
+
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <span>Default Passcode: <strong class="text-slate-700">ops2026</strong></span>
+                <button type="button" onclick="window.LalaApp.quickFillManagerPasscode()" class="text-primary hover:underline font-semibold flex items-center gap-0.5">
+                  <span>Quick Fill & Unlock</span>
+                  <span class="material-symbols-outlined text-[12px]">bolt</span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
+
+        <!-- 🔓 UNLOCKED MANAGER OPERATIONS CONTENT -->
+        <div id="manager-unlocked-content" class="hidden">
+          <!-- Dashboard Header -->
+          <div class="flex flex-wrap items-center justify-between gap-space-md mb-5">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-900 font-mono text-xs font-semibold">Triage & Queue Control</span>
+                <span class="text-slate-400">•</span>
+                <span class="text-xs text-slate-500 font-mono">Pipeline Health Monitor</span>
+              </div>
+              <h1 class="text-2xl font-bold text-on-surface tracking-tight">Manager Operations Dashboard</h1>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <button onclick="window.LalaApp.lockManagerDashboard()" class="h-9 px-3 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-all" type="button" title="Lock manager console session">
+                <span class="material-symbols-outlined text-[16px] text-slate-500">lock</span>
+                <span>Lock Console</span>
+              </button>
+              <button id="trigger-batch-chase" class="h-9 px-4 rounded-lg bg-primary text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm hover:bg-primary-container transition-all active:scale-[0.99]" type="button">
+                <span class="material-symbols-outlined text-[16px]">notifications_active</span>
+                <span>Nudge Internal Overdues</span>
+              </button>
+            </div>
+          </div>
 
         <!-- EXACT 4 KPI CARDS REQUESTED -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -411,6 +474,8 @@
             </div>
           </div>
         </div>
+        <!-- End manager-unlocked-content -->
+        </div>
       </section>
 
       <!-- ======================================================================== -->
@@ -443,114 +508,126 @@
           </button>
         </div>
 
-        <!-- Filter Pills -->
-        <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-4 text-nowrap">
-          <button data-filter="all" class="filter-pill active px-3 py-1 rounded-full bg-primary-container text-white text-xs font-semibold transition-all shadow-sm">
-            All Active <span id="pill-count-all" class="ml-1 opacity-80 font-mono">0</span>
-          </button>
-          <button data-filter="needs-followup" class="filter-pill px-3 py-1 rounded-full bg-white text-amber-900 border border-amber-300 hover:bg-amber-50 text-xs font-semibold transition-all shadow-sm flex items-center gap-1">
-            <span class="material-symbols-outlined text-[14px] text-amber-600">notification_important</span>
-            Needs Follow-up <span id="pill-count-followup" class="ml-0.5 font-mono font-bold text-amber-700">0</span>
-          </button>
-          <button data-filter="waiting-us" class="filter-pill px-3 py-1 rounded-full bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 text-xs font-semibold transition-all shadow-sm">
-            Waiting for us <span id="pill-count-waiting-us" class="ml-1 text-blue-700 font-mono font-bold">0</span>
-          </button>
-          <button data-filter="waiting-client" class="filter-pill px-3 py-1 rounded-full bg-white text-sky-800 border border-sky-300 hover:bg-sky-50 text-xs font-semibold transition-all shadow-sm flex items-center gap-1">
-            <span class="material-symbols-outlined text-[13px]">hourglass_top</span>
-            Waiting on Client <span id="pill-count-waiting-client" class="ml-0.5 font-mono font-bold text-sky-700">0</span>
-          </button>
-          <button data-filter="unassigned" class="filter-pill px-3 py-1 rounded-full bg-white text-purple-700 border border-purple-200 hover:bg-purple-50 text-xs font-semibold transition-all shadow-sm">
-            Unassigned <span id="pill-count-unassigned" class="ml-1 font-mono font-bold text-purple-700">0</span>
-          </button>
-          <button data-filter="overdue" class="filter-pill px-3 py-1 rounded-full bg-white text-red-600 border border-red-200 hover:bg-red-50 text-xs font-semibold transition-all shadow-sm flex items-center gap-1">
-            <span class="h-1.5 w-1.5 rounded-full bg-red-600"></span>
-            Overdue <span id="pill-count-overdue" class="ml-0.5 font-mono font-bold">0</span>
-          </button>
-          <button data-filter="already-done" class="filter-pill px-3 py-1 rounded-full bg-white text-emerald-800 border border-emerald-300 hover:bg-emerald-50 text-xs font-semibold transition-all shadow-sm flex items-center gap-1">
-            <span class="material-symbols-outlined text-[14px]">check_circle</span>
-            Already Done <span id="pill-count-done" class="ml-0.5 font-mono font-bold text-emerald-700">0</span>
-          </button>
-          <button data-filter="my-tasks" class="filter-pill px-3 py-1 rounded-full bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 text-xs font-semibold transition-all shadow-sm">
-            My Tasks <span id="pill-count-my" class="ml-1 text-primary font-mono">0</span>
-          </button>
-          <button data-filter="p0" class="filter-pill px-3 py-1 rounded-full bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 text-xs font-semibold transition-all shadow-sm">
-            [P0] Urgent
-          </button>
+        <!-- Refined Filter Toolbar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5 p-2 bg-white rounded-xl border border-slate-200/80 shadow-xs">
+          <!-- Primary Lifecycle Tabs -->
+          <div class="inline-flex p-1 bg-slate-100 rounded-lg gap-1">
+            <button data-filter="all" class="filter-pill active px-3 py-1.5 rounded-md bg-primary-container text-white text-xs font-semibold transition-all shadow-xs">
+              All Active <span id="pill-count-all" class="ml-1 opacity-80 font-mono">0</span>
+            </button>
+            <button data-filter="needs-followup" class="filter-pill px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 text-xs font-semibold transition-all flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px] text-amber-600">notification_important</span>
+              <span>Needs Follow-up</span>
+              <span id="pill-count-followup" class="ml-0.5 font-mono font-bold text-amber-700">0</span>
+            </button>
+            <button data-filter="waiting-client" class="filter-pill px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 text-xs font-semibold transition-all flex items-center gap-1">
+              <span class="material-symbols-outlined text-[13px] text-sky-600">hourglass_top</span>
+              <span>Waiting on Client</span>
+              <span id="pill-count-waiting-client" class="ml-0.5 font-mono font-bold text-sky-700">0</span>
+            </button>
+            <button data-filter="already-done" class="filter-pill px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 text-xs font-semibold transition-all flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px] text-emerald-600">check_circle</span>
+              <span>Completed</span>
+              <span id="pill-count-done" class="ml-0.5 font-mono font-bold text-emerald-700">0</span>
+            </button>
+          </div>
+
+          <!-- Secondary Criteria Chips -->
+          <div class="flex items-center gap-1.5 text-xs flex-wrap">
+            <span class="text-slate-400 font-mono text-[11px] hidden sm:inline mr-1">Filter:</span>
+            <button data-filter="waiting-us" class="filter-pill px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 text-xs font-medium transition-all">
+              Waiting for us <span id="pill-count-waiting-us" class="ml-1 text-blue-700 font-mono font-bold">0</span>
+            </button>
+            <button data-filter="unassigned" class="filter-pill px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-purple-50 text-slate-600 hover:text-purple-700 border border-slate-200 text-xs font-medium transition-all">
+              Unassigned <span id="pill-count-unassigned" class="ml-1 font-mono font-bold text-purple-700">0</span>
+            </button>
+            <button data-filter="overdue" class="filter-pill px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-red-50 text-slate-600 hover:text-red-700 border border-slate-200 text-xs font-medium transition-all flex items-center gap-1">
+              <span class="h-1.5 w-1.5 rounded-full bg-red-600"></span>
+              <span>Overdue</span>
+              <span id="pill-count-overdue" class="ml-0.5 font-mono font-bold">0</span>
+            </button>
+            <button data-filter="p0" class="filter-pill px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-red-50 text-slate-600 hover:text-red-700 border border-slate-200 text-xs font-medium transition-all">
+              [P0] Urgent
+            </button>
+            <button data-filter="my-tasks" class="filter-pill px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-600 border border-slate-200 text-xs font-medium transition-all">
+              My Tasks <span id="pill-count-my" class="ml-1 text-primary font-mono">0</span>
+            </button>
+          </div>
         </div>
 
         <!-- 6-COLUMN KANBAN BOARD -->
         <div id="board-kanban-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 items-start overflow-x-auto pb-4">
           <!-- 1. New Request -->
-          <div class="kanban-column bg-purple-50/40 p-2.5 rounded-xl border border-purple-200/80 flex flex-col gap-2.5 min-h-[520px]">
-            <div class="flex items-center justify-between pb-2 border-b border-purple-200">
+          <div class="kanban-column bg-slate-100/70 p-2.5 rounded-xl border border-slate-200/80 flex flex-col gap-2.5 min-h-[520px]">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200">
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-purple-600"></span>
-                <span class="text-[11px] font-bold text-purple-900 uppercase tracking-wider font-mono">New Request</span>
+                <span class="text-[11px] font-bold text-slate-800 uppercase tracking-wider font-mono">New Request</span>
               </div>
-              <span id="count-col-new-request" class="font-mono text-xs font-bold text-purple-800 bg-white px-2 py-0.5 rounded-full border border-purple-200">0</span>
+              <span id="count-col-new-request" class="font-mono text-xs font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs">0</span>
             </div>
             <div id="col-new-request" class="flex flex-col gap-2.5"></div>
           </div>
 
           <!-- 2. Needs Clarification -->
-          <div class="kanban-column bg-amber-50/40 p-2.5 rounded-xl border border-amber-200/80 flex flex-col gap-2.5 min-h-[520px]">
-            <div class="flex items-center justify-between pb-2 border-b border-amber-200">
+          <div class="kanban-column bg-slate-100/70 p-2.5 rounded-xl border border-slate-200/80 flex flex-col gap-2.5 min-h-[520px]">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200">
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-                <span class="text-[11px] font-bold text-amber-900 uppercase tracking-wider font-mono">Clarify</span>
+                <span class="text-[11px] font-bold text-slate-800 uppercase tracking-wider font-mono">Clarify</span>
               </div>
-              <span id="count-col-needs-clarification" class="font-mono text-xs font-bold text-amber-800 bg-white px-2 py-0.5 rounded-full border border-amber-200">0</span>
+              <span id="count-col-needs-clarification" class="font-mono text-xs font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs">0</span>
             </div>
             <div id="col-needs-clarification" class="flex flex-col gap-2.5"></div>
           </div>
 
           <!-- 3. Ready to Assign -->
-          <div class="kanban-column bg-sky-50/40 p-2.5 rounded-xl border border-sky-200/80 flex flex-col gap-2.5 min-h-[520px]">
-            <div class="flex items-center justify-between pb-2 border-b border-sky-200">
+          <div class="kanban-column bg-slate-100/70 p-2.5 rounded-xl border border-slate-200/80 flex flex-col gap-2.5 min-h-[520px]">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200">
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-sky-500"></span>
-                <span class="text-[11px] font-bold text-sky-900 uppercase tracking-wider font-mono">Ready to Assign</span>
+                <span class="text-[11px] font-bold text-slate-800 uppercase tracking-wider font-mono">Ready to Assign</span>
               </div>
-              <span id="count-col-ready-to-assign" class="font-mono text-xs font-bold text-sky-800 bg-white px-2 py-0.5 rounded-full border border-sky-200">0</span>
+              <span id="count-col-ready-to-assign" class="font-mono text-xs font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs">0</span>
             </div>
             <div id="col-ready-to-assign" class="flex flex-col gap-2.5"></div>
           </div>
 
           <!-- 4. In Progress -->
-          <div class="kanban-column bg-blue-50/40 p-2.5 rounded-xl border border-blue-200/80 flex flex-col gap-2.5 min-h-[520px]">
-            <div class="flex items-center justify-between pb-2 border-b border-blue-200">
+          <div class="kanban-column bg-slate-100/70 p-2.5 rounded-xl border border-slate-200/80 flex flex-col gap-2.5 min-h-[520px]">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200">
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-                <span class="text-[11px] font-bold text-blue-900 uppercase tracking-wider font-mono">In Progress</span>
+                <span class="text-[11px] font-bold text-slate-800 uppercase tracking-wider font-mono">In Progress</span>
               </div>
-              <span id="count-col-in-progress" class="font-mono text-xs font-bold text-blue-800 bg-white px-2 py-0.5 rounded-full border border-blue-200">0</span>
+              <span id="count-col-in-progress" class="font-mono text-xs font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs">0</span>
             </div>
             <div id="col-in-progress" class="flex flex-col gap-2.5"></div>
           </div>
 
           <!-- 5. Waiting on Client (Distinct Protected styling) -->
-          <div class="kanban-column bg-sky-50/70 p-2.5 rounded-xl border-2 border-sky-300 flex flex-col gap-2.5 min-h-[520px]">
+          <div class="kanban-column bg-sky-50/40 p-2.5 rounded-xl border border-sky-200/80 flex flex-col gap-2.5 min-h-[520px]">
             <div class="flex items-center justify-between pb-2 border-b border-sky-200">
               <div class="flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-[15px] text-sky-600">hourglass_top</span>
                 <span class="text-[11px] font-bold text-sky-900 uppercase tracking-wider font-mono">Waiting on Client</span>
               </div>
-              <span id="count-col-waiting-on-client" class="font-mono text-xs font-bold text-sky-800 bg-white px-2 py-0.5 rounded-full border border-sky-300">0</span>
+              <span id="count-col-waiting-on-client" class="font-mono text-xs font-bold text-sky-800 bg-white px-2 py-0.5 rounded-full border border-sky-200 shadow-2xs">0</span>
             </div>
-            <div class="text-[10px] font-mono text-sky-700 bg-sky-100/80 p-1.5 rounded text-center">
+            <div class="text-[10px] font-mono text-sky-700 bg-sky-100/70 p-1.5 rounded text-center">
               Client hold • Not stale/overdue
             </div>
             <div id="col-waiting-on-client" class="flex flex-col gap-2.5"></div>
           </div>
 
           <!-- 6. Done -->
-          <div class="kanban-column bg-emerald-50/40 p-2.5 rounded-xl border border-emerald-200/80 flex flex-col gap-2.5 min-h-[520px]">
+          <div class="kanban-column bg-emerald-50/30 p-2.5 rounded-xl border border-emerald-200/70 flex flex-col gap-2.5 min-h-[520px]">
             <div class="flex items-center justify-between pb-2 border-b border-emerald-200">
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
                 <span class="text-[11px] font-bold text-emerald-900 uppercase tracking-wider font-mono">Done</span>
               </div>
-              <span id="count-col-done" class="font-mono text-xs font-bold text-emerald-800 bg-white px-2 py-0.5 rounded-full border border-emerald-200">0</span>
+              <span id="count-col-done" class="font-mono text-xs font-bold text-emerald-800 bg-white px-2 py-0.5 rounded-full border border-emerald-200 shadow-2xs">0</span>
             </div>
             <div id="col-done" class="flex flex-col gap-2.5"></div>
           </div>
