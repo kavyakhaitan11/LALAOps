@@ -731,7 +731,7 @@
           else if (item.status === 'done') statusBadgeClass = 'bg-emerald-100 text-emerald-800';
 
           return `
-            <div class="p-3.5 rounded-xl border ${isOverdue ? 'border-red-200 bg-red-50/20' : isWaitingClient ? 'border-sky-200 bg-sky-50/20' : 'border-slate-200 bg-white'} flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:shadow-sm transition-all" data-task-id="${item.id}">
+            <div class="p-3.5 rounded-xl border ${isOverdue ? 'border-red-200 bg-red-50/20' : isWaitingClient ? 'border-sky-200 bg-sky-50/20' : 'border-slate-200 bg-white'} flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:shadow-sm hover:border-slate-300 transition-all cursor-pointer" onclick="if(!event.target.closest('button')) window.LalaApp.openTaskDetail('${item.id}')" data-task-id="${item.id}">
               <div class="flex items-start gap-3">
                 <span class="font-code text-xs px-2 py-1 rounded bg-slate-100 font-bold text-slate-700 self-start">${item.id}</span>
                 <div>
@@ -963,7 +963,7 @@
     const isUnassigned = !task.assignee || task.assignee === 'Unassigned';
     const timing = formatTaskTiming(task);
 
-    card.className = `kanban-card elevation-1 rounded-xl p-3 flex flex-col gap-2 relative bg-white transition-all ${isWaitingClient ? 'card-waiting-client' : isUnassigned ? 'card-unassigned' : timing.isOverdue ? 'card-overdue' : ''}`;
+    card.className = `kanban-card elevation-1 rounded-xl p-3 flex flex-col gap-2.5 relative bg-white transition-all cursor-pointer hover:-translate-y-0.5 hover:shadow-md hover:border-slate-300 duration-150 ${isWaitingClient ? 'card-waiting-client' : isUnassigned ? 'card-unassigned' : timing.isOverdue ? 'card-overdue' : ''}`;
     card.setAttribute('draggable', 'true');
     card.setAttribute('data-task-id', task.id);
 
@@ -982,21 +982,21 @@
         <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${priorityClass}">[${task.priority}]</span>
       </div>
 
-      <div class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
+      <div class="text-[13px] font-semibold text-slate-900 leading-snug line-clamp-2">
         ${escapeHtml(task.title)}
       </div>
 
       <!-- Specific Contexts for Waiting on Client or Needs Clarification -->
       ${isWaitingClient && task.clientWaitReason ? `
-        <div class="p-1.5 rounded-lg bg-sky-50/80 border border-sky-200/90 text-sky-900 text-[11px] flex items-start gap-1">
-          <span class="material-symbols-outlined text-sky-600 text-[13px] flex-shrink-0 mt-0.5">hourglass_top</span>
+        <div class="p-2 rounded-lg bg-sky-50/90 border border-sky-200 text-sky-900 text-[11px] flex items-start gap-1.5">
+          <span class="material-symbols-outlined text-sky-600 text-[14px] flex-shrink-0 mt-0.5">hourglass_top</span>
           <span class="line-clamp-2">${escapeHtml(task.clientWaitReason)}</span>
         </div>
       ` : ''}
 
       ${task.status === 'needs_clarification' && task.clarificationNote ? `
-        <div class="p-1.5 rounded-lg bg-amber-50/80 border border-amber-200/90 text-amber-900 text-[11px] flex items-start gap-1">
-          <span class="material-symbols-outlined text-amber-600 text-[13px] flex-shrink-0 mt-0.5">help</span>
+        <div class="p-2 rounded-lg bg-amber-50/90 border border-amber-200 text-amber-900 text-[11px] flex items-start gap-1.5">
+          <span class="material-symbols-outlined text-amber-600 text-[14px] flex-shrink-0 mt-0.5">help</span>
           <span class="line-clamp-2">${escapeHtml(task.clarificationNote)}</span>
         </div>
       ` : ''}
@@ -1009,7 +1009,7 @@
             <span class="font-bold text-purple-700 text-[11px]">Unassigned</span>
           ` : `
             <img src="${task.assigneeAvatar}" alt="${task.assignee}" class="w-5 h-5 rounded-full object-cover ring-1 ring-slate-200" title="${task.assignee}">
-            <span class="truncate max-w-[75px] font-medium text-slate-700 text-[11px]">${escapeHtml(task.assignee.split(' ')[0])}</span>
+            <span class="truncate max-w-[80px] font-medium text-slate-700 text-[11px]">${escapeHtml(task.assignee.split(' ')[0])}</span>
           `}
         </div>
 
@@ -1017,7 +1017,7 @@
           <span class="font-code text-[10px] ${timing.badgeClass}">
             ${timing.text}
           </span>
-          <select class="bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded text-[10px] font-medium text-slate-600 px-1 py-0.5 focus:outline-none cursor-pointer" title="Quick change stage" onchange="window.LalaApp.moveTask('${task.id}', this.value)">
+          <select class="bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded text-[10px] font-medium text-slate-600 px-1 py-0.5 focus:outline-none cursor-pointer" title="Quick change stage" onclick="event.stopPropagation()" onchange="event.stopPropagation(); window.LalaApp.moveTask('${task.id}', this.value)">
             <option value="new_request" ${task.status === 'new_request' ? 'selected' : ''}>New</option>
             <option value="needs_clarification" ${task.status === 'needs_clarification' ? 'selected' : ''}>Clarify</option>
             <option value="ready_to_assign" ${task.status === 'ready_to_assign' ? 'selected' : ''}>Ready</option>
@@ -1028,6 +1028,11 @@
         </div>
       </div>
     `;
+
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('select') || e.target.closest('button')) return;
+      window.LalaApp.openTaskDetail(task.id);
+    });
 
     card.addEventListener('dragstart', (e) => {
       e.dataTransfer.setData('text/plain', task.id);
@@ -1078,9 +1083,9 @@
       }
 
       return `
-        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors text-xs font-body-md text-slate-700">
+        <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition-colors text-xs font-body-md text-slate-700 cursor-pointer" onclick="if(!event.target.closest('button')) window.LalaApp.openTaskDetail('${task.id}')">
           <!-- 1. What Needs to be Done -->
-          <td class="px-3 py-3">
+          <td class="px-3.5 py-3">
             <div class="flex items-center gap-1.5 mb-1">
               <span class="font-code font-bold text-primary text-[11px]">${task.id}</span>
               <span class="px-1.5 py-0.2 rounded text-[10px] font-semibold uppercase ${sourceClass}">${task.source}</span>
@@ -1090,7 +1095,7 @@
           </td>
 
           <!-- 2. Who is Responsible -->
-          <td class="px-3 py-3">
+          <td class="px-3.5 py-3">
             <div class="flex items-center gap-1.5">
               ${isUnassigned ? `
                 <button onclick="window.LalaApp.quickAssignPrompt('${task.id}')" class="px-2 py-1 rounded-full bg-purple-100 text-purple-700 hover:bg-purple-200 font-bold text-[11px] flex items-center gap-1 transition-colors">
@@ -1105,36 +1110,39 @@
           </td>
 
           <!-- 3. What the Priority is -->
-          <td class="px-3 py-3">
+          <td class="px-3.5 py-3">
             <span class="px-2 py-0.5 rounded font-code font-bold badge-${task.priority.toLowerCase()}">[${task.priority}]</span>
           </td>
 
           <!-- 4. What the Current Status is -->
-          <td class="px-3 py-3">
+          <td class="px-3.5 py-3">
             <span class="px-2 py-0.5 rounded text-[11px] font-bold uppercase font-mono ${statusClass}">
               ${task.status.replace(/_/g, ' ')}
             </span>
           </td>
 
           <!-- 5. What Needs a Follow-up -->
-          <td class="px-3 py-3">
+          <td class="px-3.5 py-3">
             ${followUpBadge}
           </td>
 
           <!-- 6. Target / Done Date -->
-          <td class="px-3 py-3 font-code ${timing.badgeClass}">
+          <td class="px-3.5 py-3 font-code ${timing.badgeClass}">
             ${timing.text}
           </td>
 
           <!-- Quick Actions -->
-          <td class="px-3 py-3">
-            <div class="flex items-center gap-1">
+          <td class="px-3.5 py-3">
+            <div class="flex items-center gap-1.5">
+              <button class="px-2 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] font-semibold transition-colors" onclick="window.LalaApp.openTaskDetail('${task.id}')">
+                Details
+              </button>
               ${task.status === 'waiting_on_client' ? `
-                <button class="px-2 py-1 rounded bg-sky-600 hover:bg-sky-700 text-white font-mono text-[11px] font-semibold" onclick="window.LalaApp.nudgeClientFollowup('${task.id}', '${escapeHtml(task.title)}')">
+                <button class="px-2 py-1 rounded bg-sky-600 hover:bg-sky-700 text-white font-mono text-[11px] font-semibold transition-colors" onclick="window.LalaApp.nudgeClientFollowup('${task.id}', '${escapeHtml(task.title)}')">
                   Ping Client
                 </button>
               ` : !isDone ? `
-                <button class="px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-[11px] font-semibold" onclick="window.LalaApp.moveTask('${task.id}', 'done')">
+                <button class="px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-mono text-[11px] font-semibold transition-colors" onclick="window.LalaApp.moveTask('${task.id}', 'done')">
                   Done
                 </button>
               ` : `
@@ -1209,7 +1217,7 @@
         const isInProgress = task.status === 'in_progress';
 
         return `
-          <div class="p-4 rounded-xl border ${isWaitingClient ? 'border-sky-300 bg-sky-50/30' : timing.isOverdue ? 'border-red-200 bg-red-50/30' : 'border-slate-200 bg-white'} shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:shadow-md">
+          <div class="p-4 rounded-xl border ${isWaitingClient ? 'border-sky-300 bg-sky-50/30' : timing.isOverdue ? 'border-red-200 bg-red-50/30' : 'border-slate-200 bg-white'} shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:shadow-md cursor-pointer hover:border-slate-300" onclick="if(!event.target.closest('button')) window.LalaApp.openTaskDetail('${task.id}')">
             <div class="flex items-start gap-3">
               <button class="mt-1 w-5 h-5 rounded border ${isDone ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300 hover:border-primary'} flex items-center justify-center transition-colors" onclick="window.LalaApp.toggleTaskDone('${task.id}')">
                 ${isDone ? '<span class="material-symbols-outlined text-[14px]">check</span>' : ''}
@@ -1246,6 +1254,10 @@
               </div>
 
               <div class="flex items-center gap-1.5">
+                <button class="px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-2xs transition-all" onclick="window.LalaApp.openTaskDetail('${task.id}')">
+                  Details
+                </button>
+
                 ${!isDone ? `
                   ${!isInProgress ? `
                     <button class="px-2.5 py-1.5 rounded-lg bg-primary text-white hover:bg-primary-container text-xs font-semibold shadow-sm transition-all" onclick="window.LalaApp.moveTask('${task.id}', 'in_progress')">
@@ -1354,6 +1366,7 @@
 
   // --- Waiting on Client Modal Controller ---
   let activeClientWaitTaskId = null;
+  let activeDetailTaskId = null;
 
   function openWaitingOnClientModal(taskId) {
     activeClientWaitTaskId = taskId;
@@ -1592,9 +1605,180 @@
     },
     openTaskDetail: (id) => {
       const task = store.getById(id);
-      if (task) {
-        alert(`Task: ${task.id}\nTitle: ${task.title}\nStatus: ${task.status}\nAssignee: ${task.assignee}\nCategory: ${task.category}\nDetails: ${task.description}\n${task.clientWaitReason ? 'Client Hold: ' + task.clientWaitReason : ''}`);
+      if (!task) return;
+      activeDetailTaskId = task.id;
+
+      const modal = document.getElementById('task-detail-modal');
+      if (!modal) return;
+
+      // Header Elements
+      const idEl = document.getElementById('detail-task-id');
+      const srcBadge = document.getElementById('detail-task-source-badge');
+      const srcIcon = document.getElementById('detail-task-source-icon');
+      const srcLabel = document.getElementById('detail-task-source-label');
+      const priBadge = document.getElementById('detail-task-priority-badge');
+      const staBadge = document.getElementById('detail-task-status-badge');
+      const titleEl = document.getElementById('detail-task-title');
+      const srcDetailEl = document.getElementById('detail-task-source-detail');
+      const descEl = document.getElementById('detail-task-description');
+      const createdEl = document.getElementById('detail-task-created');
+      const dueTextEl = document.getElementById('detail-task-due-text');
+      const catEl = document.getElementById('detail-task-category');
+
+      if (idEl) idEl.innerText = task.id;
+      if (titleEl) titleEl.innerText = task.title;
+      if (srcDetailEl) srcDetailEl.innerText = `Stream: ${task.sourceDetail || task.source} • Ingested via ${task.source.toUpperCase()}`;
+      if (descEl) descEl.innerText = task.description || 'No additional message details.';
+
+      const timing = formatTaskTiming(task);
+      if (dueTextEl) {
+        dueTextEl.innerHTML = `<span class="${timing.badgeClass}">${timing.text}</span> <span class="text-slate-400 font-normal">(${new Date(task.dueDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}, ${new Date(task.dueDate).toLocaleDateString()})</span>`;
       }
+      if (catEl) catEl.innerText = task.category || 'Operations';
+      if (createdEl) {
+        const createdDate = new Date(task.createdAt || Date.now());
+        createdEl.innerText = `Ingested: ${createdDate.toLocaleDateString()} at ${createdDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+      }
+
+      // Source Badge
+      if (srcLabel) srcLabel.innerText = task.source;
+      if (srcIcon) srcIcon.innerText = task.source === 'whatsapp' ? 'chat' : task.source === 'email' ? 'mail' : 'description';
+      if (srcBadge) {
+        srcBadge.className = `px-2.5 py-1 rounded text-[11px] font-semibold uppercase ${task.source === 'whatsapp' ? 'badge-whatsapp' : task.source === 'email' ? 'badge-email' : 'badge-manual'} flex items-center gap-1`;
+      }
+
+      // Priority Badge & Select
+      if (priBadge) {
+        priBadge.innerText = `[${task.priority}]`;
+        priBadge.className = `px-2 py-0.5 rounded text-[11px] font-mono font-bold badge-${task.priority.toLowerCase()}`;
+      }
+      const priSelect = document.getElementById('detail-task-priority-select');
+      if (priSelect) priSelect.value = task.priority;
+
+      // Status Badge & Select
+      if (staBadge) {
+        let statusBadgeClass = 'bg-slate-100 text-slate-700';
+        if (task.status === 'new_request') statusBadgeClass = 'bg-purple-100 text-purple-800';
+        else if (task.status === 'needs_clarification') statusBadgeClass = 'bg-amber-100 text-amber-800';
+        else if (task.status === 'ready_to_assign') statusBadgeClass = 'bg-sky-100 text-sky-800';
+        else if (task.status === 'in_progress') statusBadgeClass = 'bg-blue-100 text-blue-800';
+        else if (task.status === 'waiting_on_client') statusBadgeClass = 'bg-sky-50 text-sky-800 border border-sky-200';
+        else if (task.status === 'done') statusBadgeClass = 'bg-emerald-100 text-emerald-800';
+        staBadge.className = `px-2 py-0.5 rounded text-[11px] font-mono font-bold uppercase ${statusBadgeClass}`;
+        staBadge.innerText = task.status.replace(/_/g, ' ');
+      }
+      const staSelect = document.getElementById('detail-task-status-select');
+      if (staSelect) staSelect.value = task.status;
+
+      // Assignee Info & Select
+      const asgName = document.getElementById('detail-task-assignee-name');
+      const asgRole = document.getElementById('detail-task-assignee-role');
+      const asgAvatar = document.getElementById('detail-task-assignee-avatar');
+      const asgSelect = document.getElementById('detail-task-assignee-select');
+
+      const member = TEAM_MEMBERS.find(m => m.name === task.assignee);
+      if (asgName) asgName.innerText = task.assignee || 'Unassigned';
+      if (asgRole) asgRole.innerText = member ? member.role : 'Queue Triage';
+      if (asgAvatar) {
+        asgAvatar.src = task.assigneeAvatar || (member ? member.avatar : 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=80&h=80&fit=crop&crop=faces');
+      }
+      if (asgSelect) asgSelect.value = task.assignee || 'Unassigned';
+
+      // Waiting on Client Section
+      const clientSection = document.getElementById('detail-task-client-section');
+      const clientReason = document.getElementById('detail-task-client-reason');
+      const clientDays = document.getElementById('detail-task-client-days');
+      const clientRepliedBtn = document.getElementById('detail-task-client-replied-btn');
+      const clientPingBtn = document.getElementById('detail-task-client-ping-btn');
+
+      if (task.status === 'waiting_on_client') {
+        if (clientSection) clientSection.classList.remove('hidden');
+        if (clientReason) clientReason.innerText = task.clientWaitReason || 'Awaiting formal client feedback or countersignature.';
+        if (clientDays) clientDays.innerText = `${task.clientWaitDays || 1} day(s) on hold`;
+        if (clientRepliedBtn) {
+          clientRepliedBtn.onclick = () => {
+            window.LalaApp.clientReplied(task.id);
+            window.LalaApp.openTaskDetail(task.id);
+          };
+        }
+        if (clientPingBtn) {
+          clientPingBtn.onclick = () => {
+            window.LalaApp.nudgeClientFollowup(task.id, task.title);
+          };
+        }
+      } else {
+        if (clientSection) clientSection.classList.add('hidden');
+      }
+
+      // Needs Clarification Section
+      const clarifySection = document.getElementById('detail-task-clarify-section');
+      const clarifyNote = document.getElementById('detail-task-clarify-note');
+      if (task.status === 'needs_clarification' && task.clarificationNote) {
+        if (clarifySection) clarifySection.classList.remove('hidden');
+        if (clarifyNote) clarifyNote.innerText = task.clarificationNote;
+      } else {
+        if (clarifySection) clarifySection.classList.add('hidden');
+      }
+
+      // Quick Actions on Right
+      const doneBtn = document.getElementById('detail-task-done-btn');
+      const doneText = document.getElementById('detail-task-done-text');
+      const waitBtn = document.getElementById('detail-task-wait-btn');
+      const nudgeBtn = document.getElementById('detail-task-nudge-btn');
+
+      if (doneText) doneText.innerText = task.status === 'done' ? 'Re-open Request' : 'Mark as Done';
+      if (doneBtn) {
+        doneBtn.onclick = () => {
+          window.LalaApp.toggleTaskDone(task.id);
+          window.LalaApp.openTaskDetail(task.id);
+        };
+      }
+      if (waitBtn) {
+        waitBtn.style.display = task.status === 'waiting_on_client' ? 'none' : 'flex';
+        waitBtn.onclick = () => {
+          window.LalaApp.closeTaskDetailModal();
+          window.LalaApp.promptWaitingOnClient(task.id);
+        };
+      }
+      if (nudgeBtn) {
+        nudgeBtn.onclick = () => {
+          window.LalaApp.nudgeAssignee(task.id, task.assignee);
+        };
+      }
+
+      modal.classList.remove('hidden');
+    },
+    closeTaskDetailModal: () => {
+      const modal = document.getElementById('task-detail-modal');
+      if (modal) modal.classList.add('hidden');
+      activeDetailTaskId = null;
+    },
+    updateDetailStatus: (newStatus) => {
+      if (!activeDetailTaskId) return;
+      if (newStatus === 'waiting_on_client') {
+        window.LalaApp.closeTaskDetailModal();
+        window.LalaApp.promptWaitingOnClient(activeDetailTaskId);
+        return;
+      }
+      store.updateTask(activeDetailTaskId, { status: newStatus });
+      window.LalaApp.openTaskDetail(activeDetailTaskId);
+      showToast('Status Updated', `Request status changed to ${newStatus.replace(/_/g, ' ').toUpperCase()}`, 'success');
+    },
+    updateDetailAssignee: (newAssignee) => {
+      if (!activeDetailTaskId) return;
+      const member = TEAM_MEMBERS.find(m => m.name === newAssignee);
+      store.updateTask(activeDetailTaskId, {
+        assignee: newAssignee,
+        assigneeAvatar: member ? member.avatar : ''
+      });
+      window.LalaApp.openTaskDetail(activeDetailTaskId);
+      showToast('Assignee Updated', `Request assigned to ${newAssignee}`, 'info');
+    },
+    updateDetailPriority: (newPriority) => {
+      if (!activeDetailTaskId) return;
+      store.updateTask(activeDetailTaskId, { priority: newPriority });
+      window.LalaApp.openTaskDetail(activeDetailTaskId);
+      showToast('Priority Updated', `Priority set to ${newPriority}`, 'info');
     },
     populateSampleWhatsApp: (index) => {
       const samples = [
@@ -1798,7 +1982,7 @@
       });
     }
 
-    // Command Palette (⌘K / Ctrl+K) Shortcut
+    // Global Shortcuts (⌘K / Ctrl+K for search, Escape to close modals)
     window.addEventListener('keydown', (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
@@ -1807,6 +1991,10 @@
           searchBar.focus();
           searchBar.select();
         }
+      } else if (e.key === 'Escape') {
+        window.LalaApp.closeTaskDetailModal();
+        window.LalaApp.closeChangePasscodeModal();
+        closeWaitingOnClientModal();
       }
     });
 

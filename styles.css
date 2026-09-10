@@ -292,6 +292,26 @@ body {
   box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
+/* Modal Entry Animation */
+@keyframes modalZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.animate-in {
+  animation: modalZoomIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
 /* Print Friendly Styles for Executive Pitch */
 @media print {
   aside, header, #toast-container, .no-print {

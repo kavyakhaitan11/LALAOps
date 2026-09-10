@@ -58,12 +58,13 @@ The **Manager Operations Dashboard** is protected by an administrative lock scre
 
 ---
 
-## 🎨 Clean & Decluttered UI/UX
+## 🎨 Spacious & Modern UI/UX Improvements
 
-- **Unified Operations Telemetry Strip**: Replaced bulky, competing colored block buttons with a slim, calm status telemetry bar with soft dot dividers.
-- **Refined Filter Toolbar**: Organized into primary lifecycle tabs (`All Active`, `Needs Follow-up`, `Waiting on Client`, `Completed`) and secondary criteria chips (`Waiting for us`, `Unassigned`, `Overdue`, `[P0] Urgent`, `My Tasks`).
-- **Calm Neutral Kanban**: Clean, uniform slate column containers (`bg-slate-100/70 border-slate-200/80`) with crisp stage accent dots, reducing visual fatigue.
-- **Compact Card Footer**: Streamlined single-row footer combining assignee, timing SLA, and low-profile stage selector.
+- **Dedicated 290px Kanban Columns**: Upgraded from squeezed grid columns into a spacious, horizontal flex track (`min-w-[290px]` per column) with smooth horizontal scrolling, ensuring cards, titles, badges, and SLAs never feel cramped.
+- **Interactive Task Detail Modal**: Replaced basic browser alerts with a rich, two-column interactive modal displaying full raw inbound messages, client hold reasons, clarification notes, live stage switcher, owner reassignment, and SLA timing.
+- **Clickable Cards Across All Views**: Click any card in the Kanban board, table row, manager triage list, or employee workspace to immediately inspect and edit task attributes.
+- **Unified Operations Telemetry Strip**: A slim, persistent telemetry bar highlighting the 6 core operational questions with live counters and click-to-filter shortcuts.
+- **Keyboard Shortcuts**: Use `⌘K / Ctrl+K` for instant global search, and `Escape` to dismiss any open modal.
 
 ---
 

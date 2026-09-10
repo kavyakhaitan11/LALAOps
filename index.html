@@ -565,81 +565,81 @@
           </div>
         </div>
 
-        <!-- 6-COLUMN KANBAN BOARD -->
-        <div id="board-kanban-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 items-start overflow-x-auto pb-4">
+        <!-- 6-COLUMN KANBAN BOARD (Spacious horizontal scroll layout) -->
+        <div id="board-kanban-container" class="flex gap-4 items-start overflow-x-auto pb-6 pt-1 px-0.5 scrollbar-thin">
           <!-- 1. New Request -->
-          <div class="kanban-column bg-slate-100/70 p-2.5 rounded-xl border border-slate-200/80 flex flex-col gap-2.5 min-h-[520px]">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-purple-600"></span>
-                <span class="text-[11px] font-bold text-slate-800 uppercase tracking-wider font-mono">New Request</span>
+          <div class="kanban-column w-[290px] min-w-[290px] max-w-[290px] flex-shrink-0 bg-slate-100/75 p-3 rounded-2xl border border-slate-200/80 flex flex-col gap-3 min-h-[580px] shadow-xs">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span>
+                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono">New Request</span>
               </div>
               <span id="count-col-new-request" class="font-mono text-xs font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs">0</span>
             </div>
-            <div id="col-new-request" class="flex flex-col gap-2.5"></div>
+            <div id="col-new-request" class="flex flex-col gap-3"></div>
           </div>
 
           <!-- 2. Needs Clarification -->
-          <div class="kanban-column bg-slate-100/70 p-2.5 rounded-xl border border-slate-200/80 flex flex-col gap-2.5 min-h-[520px]">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-                <span class="text-[11px] font-bold text-slate-800 uppercase tracking-wider font-mono">Clarify</span>
+          <div class="kanban-column w-[290px] min-w-[290px] max-w-[290px] flex-shrink-0 bg-slate-100/75 p-3 rounded-2xl border border-slate-200/80 flex flex-col gap-3 min-h-[580px] shadow-xs">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono">Clarify</span>
               </div>
               <span id="count-col-needs-clarification" class="font-mono text-xs font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs">0</span>
             </div>
-            <div id="col-needs-clarification" class="flex flex-col gap-2.5"></div>
+            <div id="col-needs-clarification" class="flex flex-col gap-3"></div>
           </div>
 
           <!-- 3. Ready to Assign -->
-          <div class="kanban-column bg-slate-100/70 p-2.5 rounded-xl border border-slate-200/80 flex flex-col gap-2.5 min-h-[520px]">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-sky-500"></span>
-                <span class="text-[11px] font-bold text-slate-800 uppercase tracking-wider font-mono">Ready to Assign</span>
+          <div class="kanban-column w-[290px] min-w-[290px] max-w-[290px] flex-shrink-0 bg-slate-100/75 p-3 rounded-2xl border border-slate-200/80 flex flex-col gap-3 min-h-[580px] shadow-xs">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
+                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono">Ready to Assign</span>
               </div>
               <span id="count-col-ready-to-assign" class="font-mono text-xs font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs">0</span>
             </div>
-            <div id="col-ready-to-assign" class="flex flex-col gap-2.5"></div>
+            <div id="col-ready-to-assign" class="flex flex-col gap-3"></div>
           </div>
 
           <!-- 4. In Progress -->
-          <div class="kanban-column bg-slate-100/70 p-2.5 rounded-xl border border-slate-200/80 flex flex-col gap-2.5 min-h-[520px]">
-            <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-                <span class="text-[11px] font-bold text-slate-800 uppercase tracking-wider font-mono">In Progress</span>
+          <div class="kanban-column w-[290px] min-w-[290px] max-w-[290px] flex-shrink-0 bg-slate-100/75 p-3 rounded-2xl border border-slate-200/80 flex flex-col gap-3 min-h-[580px] shadow-xs">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200/80">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono">In Progress</span>
               </div>
               <span id="count-col-in-progress" class="font-mono text-xs font-bold text-slate-700 bg-white px-2 py-0.5 rounded-full border border-slate-200 shadow-2xs">0</span>
             </div>
-            <div id="col-in-progress" class="flex flex-col gap-2.5"></div>
+            <div id="col-in-progress" class="flex flex-col gap-3"></div>
           </div>
 
           <!-- 5. Waiting on Client (Distinct Protected styling) -->
-          <div class="kanban-column bg-sky-50/40 p-2.5 rounded-xl border border-sky-200/80 flex flex-col gap-2.5 min-h-[520px]">
+          <div class="kanban-column w-[290px] min-w-[290px] max-w-[290px] flex-shrink-0 bg-sky-50/50 p-3 rounded-2xl border border-sky-200/90 flex flex-col gap-3 min-h-[580px] shadow-xs">
             <div class="flex items-center justify-between pb-2 border-b border-sky-200">
-              <div class="flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-[15px] text-sky-600">hourglass_top</span>
-                <span class="text-[11px] font-bold text-sky-900 uppercase tracking-wider font-mono">Waiting on Client</span>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[16px] text-sky-600">hourglass_top</span>
+                <span class="text-xs font-bold text-sky-900 uppercase tracking-wider font-mono">Waiting on Client</span>
               </div>
               <span id="count-col-waiting-on-client" class="font-mono text-xs font-bold text-sky-800 bg-white px-2 py-0.5 rounded-full border border-sky-200 shadow-2xs">0</span>
             </div>
-            <div class="text-[10px] font-mono text-sky-700 bg-sky-100/70 p-1.5 rounded text-center">
+            <div class="text-[11px] font-mono text-sky-700 bg-sky-100/80 px-2 py-1 rounded-lg text-center font-medium">
               Client hold • Not stale/overdue
             </div>
-            <div id="col-waiting-on-client" class="flex flex-col gap-2.5"></div>
+            <div id="col-waiting-on-client" class="flex flex-col gap-3"></div>
           </div>
 
           <!-- 6. Done -->
-          <div class="kanban-column bg-emerald-50/30 p-2.5 rounded-xl border border-emerald-200/70 flex flex-col gap-2.5 min-h-[520px]">
+          <div class="kanban-column w-[290px] min-w-[290px] max-w-[290px] flex-shrink-0 bg-emerald-50/40 p-3 rounded-2xl border border-emerald-200/80 flex flex-col gap-3 min-h-[580px] shadow-xs">
             <div class="flex items-center justify-between pb-2 border-b border-emerald-200">
-              <div class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                <span class="text-[11px] font-bold text-emerald-900 uppercase tracking-wider font-mono">Done</span>
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                <span class="text-xs font-bold text-emerald-900 uppercase tracking-wider font-mono">Done</span>
               </div>
               <span id="count-col-done" class="font-mono text-xs font-bold text-emerald-800 bg-white px-2 py-0.5 rounded-full border border-emerald-200 shadow-2xs">0</span>
             </div>
-            <div id="col-done" class="flex flex-col gap-2.5"></div>
+            <div id="col-done" class="flex flex-col gap-3"></div>
           </div>
         </div>
 
@@ -1212,6 +1212,182 @@
           </div>
         </div>
       </form>
+    </div>
+  <!-- COMPREHENSIVE TASK DETAIL MODAL -->
+  <div id="task-detail-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="bg-white rounded-2xl max-w-3xl w-full shadow-2xl border border-slate-200 overflow-hidden my-auto animate-in fade-in zoom-in duration-150 flex flex-col max-h-[92vh]">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <span id="detail-task-id" class="font-mono text-xs px-2.5 py-1 rounded-md font-bold text-primary bg-primary/10 border border-primary/20">REQ-0000</span>
+          <span id="detail-task-source-badge" class="px-2.5 py-1 rounded text-[11px] font-semibold uppercase badge-whatsapp flex items-center gap-1">
+            <span id="detail-task-source-icon" class="material-symbols-outlined text-[13px]">chat</span>
+            <span id="detail-task-source-label">WhatsApp</span>
+          </span>
+          <span id="detail-task-priority-badge" class="px-2 py-0.5 rounded text-[11px] font-mono font-bold badge-p0">[P0] Urgent</span>
+          <span id="detail-task-status-badge" class="px-2 py-0.5 rounded text-[11px] font-mono font-bold uppercase bg-blue-100 text-blue-800">In Progress</span>
+        </div>
+        <button type="button" onclick="window.LalaApp.closeTaskDetailModal()" class="w-8 h-8 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 overflow-y-auto space-y-5">
+        <!-- Title & Source Stream -->
+        <div>
+          <h2 id="detail-task-title" class="text-xl font-bold text-slate-900 leading-snug">Task Title</h2>
+          <p id="detail-task-source-detail" class="text-xs text-slate-400 mt-1 font-mono">Inbound source metadata</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+          <!-- Left Column (Communication, Client Hold, Details) -->
+          <div class="md:col-span-7 space-y-4">
+            <!-- Full Description / Message -->
+            <div class="bg-slate-50/90 rounded-xl p-4 border border-slate-200/80">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[15px] text-primary">notes</span>
+                  <span>Inbound Request Message</span>
+                </span>
+                <span id="detail-task-created" class="text-[11px] text-slate-400 font-mono">2h ago</span>
+              </div>
+              <p id="detail-task-description" class="text-xs text-slate-800 leading-relaxed whitespace-pre-wrap">Full description text...</p>
+            </div>
+
+            <!-- Waiting on Client Context (Dynamic) -->
+            <div id="detail-task-client-section" class="hidden p-4 rounded-xl bg-sky-50 border border-sky-200 text-sky-950 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 font-bold text-xs text-sky-900 uppercase font-mono">
+                  <span class="material-symbols-outlined text-[16px] text-sky-600">hourglass_top</span>
+                  <span>Parked on Client Response</span>
+                </div>
+                <span id="detail-task-client-days" class="text-[11px] font-mono px-2 py-0.5 rounded bg-sky-100 text-sky-800 font-semibold">1 day</span>
+              </div>
+              <p id="detail-task-client-reason" class="text-xs text-sky-900 bg-white/80 p-2.5 rounded-lg border border-sky-200/60 italic leading-relaxed">
+                Awaiting counter-signature...
+              </p>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                <p class="text-[11px] text-sky-700 font-medium">
+                  ✓ Protected: Does NOT count as internal overdue.
+                </p>
+                <div class="flex items-center gap-2">
+                  <button type="button" id="detail-task-client-ping-btn" class="px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[13px]">send</span>
+                    <span>Ping Client</span>
+                  </button>
+                  <button type="button" id="detail-task-client-replied-btn" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[13px]">check</span>
+                    <span>Client Replied</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Needs Clarification Context (Dynamic) -->
+            <div id="detail-task-clarify-section" class="hidden p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 space-y-2">
+              <div class="flex items-center gap-1.5 font-bold text-xs text-amber-900 uppercase font-mono">
+                <span class="material-symbols-outlined text-[16px] text-amber-600">help</span>
+                <span>Clarification Required</span>
+              </div>
+              <p id="detail-task-clarify-note" class="text-xs text-amber-900 bg-white/80 p-2.5 rounded-lg border border-amber-200/60 italic leading-relaxed">
+                Clarification details...
+              </p>
+            </div>
+
+            <!-- Target SLA & Timing Status -->
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs">
+              <div>
+                <span class="text-slate-400 font-mono text-[11px] block">Target SLA Deadline:</span>
+                <span id="detail-task-due-text" class="font-mono font-bold text-slate-800">Due Today</span>
+              </div>
+              <div class="text-right">
+                <span class="text-slate-400 font-mono text-[11px] block">Operational Domain:</span>
+                <span id="detail-task-category" class="font-medium text-slate-800">Logistics</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (Interactive Controls & Direct Actions) -->
+          <div class="md:col-span-5 space-y-4 bg-slate-50/60 p-4 rounded-xl border border-slate-200/70">
+            <!-- Stage Selector -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5 font-mono uppercase">
+                Lifecycle Stage
+              </label>
+              <select id="detail-task-status-select" onchange="window.LalaApp.updateDetailStatus(this.value)" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer shadow-2xs">
+                <option value="new_request">1. New Request</option>
+                <option value="needs_clarification">2. Needs Clarification</option>
+                <option value="ready_to_assign">3. Ready to Assign</option>
+                <option value="in_progress">4. In Progress</option>
+                <option value="waiting_on_client">5. Waiting on Client</option>
+                <option value="done">6. Done (Closed)</option>
+              </select>
+            </div>
+
+            <!-- Assignee Selector -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5 font-mono uppercase">
+                Responsible Owner
+              </label>
+              <div class="flex items-center gap-2 mb-2 p-2 bg-white rounded-lg border border-slate-200/70">
+                <img id="detail-task-assignee-avatar" src="" alt="" class="w-8 h-8 rounded-full object-cover ring-1 ring-slate-300">
+                <div>
+                  <div id="detail-task-assignee-name" class="text-xs font-bold text-slate-800">Marcus Vance</div>
+                  <div id="detail-task-assignee-role" class="text-[10px] text-slate-500 font-mono">Field Dispatcher</div>
+                </div>
+              </div>
+              <select id="detail-task-assignee-select" onchange="window.LalaApp.updateDetailAssignee(this.value)" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer shadow-2xs">
+                <option value="Unassigned">Unassigned (Needs Owner)</option>
+                <option value="Marcus Vance">Marcus Vance (Field Dispatcher)</option>
+                <option value="Sarah Jenkins">Sarah Jenkins (Operations Lead)</option>
+                <option value="Elena Rostova">Elena Rostova (Compliance & Accounts)</option>
+                <option value="David Kim">David Kim (Customs & Logistics)</option>
+                <option value="Priya Patel">Priya Patel (Ops Coordinator)</option>
+              </select>
+            </div>
+
+            <!-- Priority Selector -->
+            <div>
+              <label class="block text-xs font-bold text-slate-700 mb-1.5 font-mono uppercase">
+                Priority Tier
+              </label>
+              <select id="detail-task-priority-select" onchange="window.LalaApp.updateDetailPriority(this.value)" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer shadow-2xs">
+                <option value="P0">[P0] Urgent Emergency</option>
+                <option value="P1">[P1] High Priority</option>
+                <option value="P2">[P2] Medium Priority</option>
+                <option value="P3">[P3] Low Priority</option>
+              </select>
+            </div>
+
+            <!-- Quick Action Triggers -->
+            <div class="pt-2 border-t border-slate-200/80 space-y-2">
+              <button type="button" id="detail-task-wait-btn" class="w-full py-2 px-3 rounded-xl border border-sky-300 bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-semibold transition-colors flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-[15px]">hourglass_top</span>
+                <span>Move to Waiting on Client</span>
+              </button>
+
+              <button type="button" id="detail-task-done-btn" class="w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs transition-colors flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-[15px]">check_circle</span>
+                <span id="detail-task-done-text">Mark as Done</span>
+              </button>
+
+              <button type="button" id="detail-task-nudge-btn" class="w-full py-2 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium transition-colors flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-[15px]">send</span>
+                <span>Send WhatsApp/Email Nudge</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3 border-t border-slate-100 bg-slate-50 flex items-center justify-between">
+        <span class="text-[11px] text-slate-400 font-mono">Updates synchronize immediately with Kanban & Manager Console</span>
+        <button type="button" onclick="window.LalaApp.closeTaskDetailModal()" class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold transition-colors">
+          Close
+        </button>
+      </div>
     </div>
   </div>
 
