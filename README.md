@@ -41,21 +41,13 @@ $$\text{New Request} \longrightarrow \text{Needs Clarification} \longrightarrow 
 
 ---
 
-## 🔒 Manager Dashboard Password Lock & Passcode Management
+## 🔒 Manager Dashboard Password Lock
 
 The **Manager Operations Dashboard** is protected by an administrative lock screen to safeguard queue triage, team capacity distribution, and SLA escalations:
 
-- **Default Passcode**: Factory default is `ops2026` (with `admin` as fallback).
-- **Self-Service Passcode Change**: Click **"Change Passcode"** on the lock screen, inside the Manager Dashboard header, or directly in the **Sidebar Bottom Card** from any screen.
-- **Active Passcode Indicator**: The modal clearly displays your currently active passcode in a live badge for instant visibility.
-- **Pre-filled Current Passcode**: Current passcode is pre-filled for zero-friction updates.
-- **Password Visibility Toggles**: Eye icon buttons on all inputs let you view or hide passcodes as you type.
-- **Immediate Auto-Unlock**: Updating the passcode automatically authenticates and unlocks the Manager Dashboard so you can get right to work without retyping.
-- **Persistent Storage**: Custom passcodes are securely persisted in your browser (`localStorage`), surviving browser restarts and page refreshes.
-- **Dynamic Lock Screen Hint**: The lock screen automatically reflects your current active passcode.
-- **1-Click Reset to Default**: Forgotten passcode? Simply click **"Reset to default (ops2026)"** inside the change modal to restore factory defaults.
-- **Quick Fill & Unlock**: 1-click shortcut for rapid testing and demonstrations.
-- **Security Feedback**: Incorrect passcode triggers a smooth shake animation (`.shake-error`).
+- **Manager Passcode**: Access code is `ops2026` (with `admin` as fallback).
+- **Auto-fill & Unlock**: 1-click shortcut on the lock screen for rapid testing and demonstration.
+- **Security Feedback**: Incorrect passcode triggers a smooth shake animation (`.shake-error`) and inline error warning.
 - **Session Persistence**: Access remains active throughout the browsing session (`sessionStorage`).
 - **Lock Console Button**: Easily re-lock the console at any time from the dashboard header.
 - **Sidebar Lock Indicator**: Live status icon (`lock` when protected, `lock_open` with green accent when unlocked).

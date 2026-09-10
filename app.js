@@ -626,23 +626,13 @@
   const DEFAULT_MANAGER_PASSCODE = 'ops2026';
 
   function getManagerPasscode() {
-    return localStorage.getItem('lalaops_manager_passcode') || DEFAULT_MANAGER_PASSCODE;
-  }
-
-  function setManagerPasscode(newCode) {
-    localStorage.setItem('lalaops_manager_passcode', newCode);
-    updateLockScreenHint();
+    return DEFAULT_MANAGER_PASSCODE;
   }
 
   function updateLockScreenHint() {
-    const code = getManagerPasscode();
     const hintEl = document.getElementById('lock-screen-hint-passcode');
     if (hintEl) {
-      hintEl.innerText = code;
-    }
-    const badgeEl = document.getElementById('change-passcode-active-badge');
-    if (badgeEl) {
-      badgeEl.innerText = code;
+      hintEl.innerText = DEFAULT_MANAGER_PASSCODE;
     }
   }
 
@@ -1518,116 +1508,7 @@
       showToast('Console Locked', 'Manager Operations session locked.', 'info');
       renderManagerDashboard();
     },
-    openChangePasscodeModal: () => {
-      const modal = document.getElementById('change-passcode-modal');
-      const errBox = document.getElementById('change-passcode-error');
-      const currentInput = document.getElementById('change-passcode-current');
-      const newInput = document.getElementById('change-passcode-new');
-      const confirmInput = document.getElementById('change-passcode-confirm');
-      const activeBadge = document.getElementById('change-passcode-active-badge');
-      const activePasscode = getManagerPasscode();
 
-      if (errBox) errBox.classList.add('hidden');
-      if (activeBadge) activeBadge.innerText = activePasscode;
-      
-      // Pre-fill active passcode for effortless usability
-      if (currentInput) {
-        currentInput.value = activePasscode;
-        currentInput.type = 'password';
-      }
-      if (newInput) {
-        newInput.value = '';
-        newInput.type = 'password';
-      }
-      if (confirmInput) {
-        confirmInput.value = '';
-        confirmInput.type = 'password';
-      }
-
-      if (modal) {
-        modal.classList.remove('hidden');
-        setTimeout(() => {
-          if (newInput) newInput.focus();
-        }, 60);
-      }
-    },
-    closeChangePasscodeModal: () => {
-      const modal = document.getElementById('change-passcode-modal');
-      if (modal) modal.classList.add('hidden');
-      const errBox = document.getElementById('change-passcode-error');
-      if (errBox) errBox.classList.add('hidden');
-    },
-    submitChangePasscode: (e) => {
-      if (e) e.preventDefault();
-      const errBox = document.getElementById('change-passcode-error');
-      const errMsg = document.getElementById('change-passcode-error-msg');
-      const currentInput = document.getElementById('change-passcode-current');
-      const newInput = document.getElementById('change-passcode-new');
-      const confirmInput = document.getElementById('change-passcode-confirm');
-
-      const currentVal = (currentInput ? currentInput.value : '').trim();
-      const newVal = (newInput ? newInput.value : '').trim();
-      const confirmVal = (confirmInput ? confirmInput.value : '').trim();
-      const activePasscode = getManagerPasscode();
-
-      const showError = (msg) => {
-        if (errBox && errMsg) {
-          errMsg.innerText = msg;
-          errBox.classList.remove('hidden');
-        } else {
-          showToast('Passcode Error', msg, 'error');
-        }
-      };
-
-      // 1. Validate current passcode: if entered, must match active passcode, default ops2026, or master admin
-      if (currentVal && currentVal !== activePasscode && currentVal !== 'admin' && currentVal !== DEFAULT_MANAGER_PASSCODE) {
-        showError(`Current passcode does not match. (Active code: ${activePasscode})`);
-        if (currentInput) { currentInput.focus(); currentInput.select(); }
-        return;
-      }
-
-      // 2. Validate new passcode length (minimum 3 characters)
-      if (!newVal || newVal.length < 3) {
-        showError('New passcode must be at least 3 characters long.');
-        if (newInput) { newInput.focus(); }
-        return;
-      }
-
-      // 3. Validate confirmation match
-      if (newVal !== confirmVal) {
-        showError('New passcode and confirmation do not match.');
-        if (confirmInput) { confirmInput.focus(); confirmInput.select(); }
-        return;
-      }
-
-      // Success: Save new passcode
-      setManagerPasscode(newVal);
-
-      // Auto-unlock manager dashboard session so the user gets immediate access
-      sessionStorage.setItem('lalaops_manager_auth', 'true');
-      const lockInput = document.getElementById('manager-passcode-input');
-      if (lockInput) lockInput.value = newVal;
-
-      updateLockScreenHint();
-      updateSidebarManagerLockState();
-      renderManagerDashboard();
-
-      window.LalaApp.closeChangePasscodeModal();
-      showToast('Passcode Updated & Dashboard Unlocked', `Manager passcode set to "${newVal}". Console unlocked!`, 'success');
-    },
-    resetPasscodeToDefault: () => {
-      localStorage.removeItem('lalaops_manager_passcode');
-      updateLockScreenHint();
-      const lockInput = document.getElementById('manager-passcode-input');
-      if (lockInput) lockInput.value = DEFAULT_MANAGER_PASSCODE;
-      const currentInput = document.getElementById('change-passcode-current');
-      if (currentInput) currentInput.value = DEFAULT_MANAGER_PASSCODE;
-      const activeBadge = document.getElementById('change-passcode-active-badge');
-      if (activeBadge) activeBadge.innerText = DEFAULT_MANAGER_PASSCODE;
-
-      window.LalaApp.closeChangePasscodeModal();
-      showToast('Passcode Restored', 'Manager passcode restored to default: ops2026', 'info');
-    },
     togglePasscodeVisibility: (inputId, btn) => {
       const input = document.getElementById(inputId);
       if (!input) return;
@@ -2031,7 +1912,6 @@
         }
       } else if (e.key === 'Escape') {
         window.LalaApp.closeTaskDetailModal();
-        window.LalaApp.closeChangePasscodeModal();
         closeWaitingOnClientModal();
       }
     });
