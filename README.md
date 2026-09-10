@@ -8,13 +8,26 @@
 
 You can open the application immediately in any modern web browser:
 1. Double-click or open [`index.html`](file:///d:/Krishna/index.html) in Google Chrome, Microsoft Edge, Brave, or Firefox.
-2. No build steps, compile processes, or dependencies required!
+2. **Zero build steps or dependencies required!** (Pure HTML5, Vanilla JavaScript, and Tailwind CSS).
+
+---
+
+## 🎯 The 6 Operational Essentials At A Glance
+
+LalaOps directly addresses task loss across WhatsApp, email, and spreadsheets by making 6 things clear in one place:
+
+| # | Question | Solution in LalaOps | Location |
+|---|---|---|---|
+| **1** | **What needs to be done** | Backlog with request scope, channel badges (`WhatsApp`, `Email`, `Spreadsheet`), and initial parameters. | Top Telemetry Strip • Column 1 |
+| **2** | **Who is responsible for it** | Explicit assignee avatar & name, or purple **`Unassigned`** badge with 1-click `Assign Now`. | Top Telemetry Strip • Column 2 • Manager KPI |
+| **3** | **What the priority is** | Standardized tiers: `[P0] Urgent` (red), `[P1] High` (amber), `[P2] Medium` (slate), `[P3] Low`. | Top Telemetry Strip • Column 3 • `[P0]` Filter Pill |
+| **4** | **What the current status is** | Enforced 6-stage lifecycle *(see below)*. Requests on client hold are clearly separated and never penalized as overdue. | Top Telemetry Strip • Column 4 • 6 Kanban Columns |
+| **5** | **What has already been done** | Completed archive with completion timestamp and audit verification. | Top Telemetry Strip • Column 6 • `Completed` Pill |
+| **6** | **What needs a follow-up** | Automated engine tracking client pings ($\ge 1$ day), missing clarification, and internal SLA chases. | Top Telemetry Strip • Column 5 • `Needs Follow-up` Pill |
 
 ---
 
 ## 🔄 The 6-Stage Request Lifecycle
-
-The system now enforces the exact 6-stage operational pipeline:
 
 $$\text{New Request} \longrightarrow \text{Needs Clarification} \longrightarrow \text{Ready to Assign} \longrightarrow \text{In Progress} \longrightarrow \text{Waiting on Client} \longrightarrow \text{Done}$$
 
@@ -23,19 +36,30 @@ $$\text{New Request} \longrightarrow \text{Needs Clarification} \longrightarrow 
 3. **Ready to Assign**: Scoped and validated, ready for engineer or dispatcher assignment.
 4. **In Progress**: Actively owned and being worked on by internal team members.
 5. **Waiting on Client**: Parked on client response (signatures, documentation, or payment approval).
-   > **Special SLA Policy**: Requests in **"Waiting on Client"** are explicitly protected — they are **never** treated as overdue or stale like forgotten internal tasks!
+   > **🛡️ Special SLA Policy**: Requests in **"Waiting on Client"** are explicitly protected — they are **never** treated as overdue or stale like forgotten internal tasks!
 6. **Done**: Completed, verified, and audit-ready.
 
 ---
 
-## 🎯 Manager Rapid Triage Views
+## 🔒 Manager Dashboard Password Lock
 
-Managers can instantly toggle between the **4 critical request buckets**:
+The **Manager Operations Dashboard** is protected by an administrative lock screen to safeguard queue triage, team capacity distribution, and SLA escalations:
 
-1. **Waiting for us**: Internal requests requiring team action (`New Request`, `Needs Clarification`, `Ready to Assign`, `In Progress`).
-2. **Waiting for the client**: Parked on external client dependencies with client follow-up indicators.
-3. **Unassigned**: Requests sitting in the intake triage queue without an owner.
-4. **Overdue**: Internal requests that have exceeded commitment deadlines (excluding tasks waiting on clients).
+- **Passcode Authentication**: Protected by passcode (`ops2026`, `admin`, or `1234`).
+- **Quick Fill & Unlock**: 1-click shortcut for rapid testing and demonstrations.
+- **Security Feedback**: Incorrect passcode triggers a smooth shake animation (`.shake-error`).
+- **Session Persistence**: Access remains active throughout the browsing session (`sessionStorage`).
+- **Lock Console Button**: Easily re-lock the console at any time from the dashboard header.
+- **Sidebar Lock Indicator**: Live status icon (`lock` when protected, `lock_open` with green accent when unlocked).
+
+---
+
+## 🎨 Clean & Decluttered UI/UX
+
+- **Unified Operations Telemetry Strip**: Replaced bulky, competing colored block buttons with a slim, calm status telemetry bar with soft dot dividers.
+- **Refined Filter Toolbar**: Organized into primary lifecycle tabs (`All Active`, `Needs Follow-up`, `Waiting on Client`, `Completed`) and secondary criteria chips (`Waiting for us`, `Unassigned`, `Overdue`, `[P0] Urgent`, `My Tasks`).
+- **Calm Neutral Kanban**: Clean, uniform slate column containers (`bg-slate-100/70 border-slate-200/80`) with crisp stage accent dots, reducing visual fatigue.
+- **Compact Card Footer**: Streamlined single-row footer combining assignee, timing SLA, and low-profile stage selector.
 
 ---
 
@@ -44,17 +68,19 @@ Managers can instantly toggle between the **4 critical request buckets**:
 ```
 d:\Krishna\
 ├── index.html                           # Master Single Page Application structure with 5 views
-├── app.js                               # Reactive state engine, 6-stage lifecycle, router & parser
-├── styles.css                           # Design System styling, status chips, client hold tokens
+├── app.js                               # Reactive state engine, 6-stage lifecycle, password lock & router
+├── styles.css                           # Lala Tech design system tokens, status badges & lock animations
 ├── lala-tech-product-resource.md        # Original business discovery & MVP strategy document
-├── stitch_centralized_operations_task_tracker.zip  # Design prototype archive
-└── README.md                            # Project documentation
+├── stitch_centralized_operations_task_tracker/  # Design prototype archive & visual assets
+├── .gitignore                           # Excludes local IDE binaries and archives
+└── README.md                            # Complete documentation
 ```
 
 ---
 
 ## 🛠️ How to Make Changes
 
-- **Add or edit demo requests**: Open [`app.js`](file:///d:/Krishna/app.js) and modify the `DEFAULT_TASKS` array.
-- **Change design tokens / colors**: Modify [`styles.css`](file:///d:/Krishna/styles.css) or the Tailwind configuration in the `<head>` of [`index.html`](file:///d:/Krishna/index.html).
-- **Reset data**: Click the **"Reset Demo Pipeline"** button at the bottom-left of the sidebar at any time to return to the clean baseline.
+- **Change Manager Passcode**: Modify the accepted passcode values in `app.js` under `handleManagerLogin`.
+- **Add or edit demo requests**: Modify the `DEFAULT_TASKS` array in `app.js`.
+- **Change design tokens / colors**: Modify `styles.css` or the Tailwind configuration in `index.html`.
+- **Reset data**: Click the **"Reset Demo Pipeline"** button at the bottom of the sidebar to reload clean initial data.
