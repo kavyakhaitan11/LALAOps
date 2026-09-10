@@ -623,6 +623,24 @@
   }
 
   // --- Manager Security & Passcode Helpers ---
+  const DEFAULT_MANAGER_PASSCODE = 'ops2026';
+
+  function getManagerPasscode() {
+    return localStorage.getItem('lalaops_manager_passcode') || DEFAULT_MANAGER_PASSCODE;
+  }
+
+  function setManagerPasscode(newCode) {
+    localStorage.setItem('lalaops_manager_passcode', newCode);
+    updateLockScreenHint();
+  }
+
+  function updateLockScreenHint() {
+    const hintEl = document.getElementById('lock-screen-hint-passcode');
+    if (hintEl) {
+      hintEl.innerText = getManagerPasscode();
+    }
+  }
+
   function isManagerUnlocked() {
     return sessionStorage.getItem('lalaops_manager_auth') === 'true';
   }
@@ -644,6 +662,7 @@
   // --- 1. Manager Operations Dashboard Renderer ---
   function renderManagerDashboard() {
     updateSidebarManagerLockState();
+    updateLockScreenHint();
 
     const lockScreen = document.getElementById('manager-lock-screen');
     const unlockedContent = document.getElementById('manager-unlocked-content');
@@ -1447,9 +1466,10 @@
       const err = document.getElementById('manager-auth-error');
       const card = document.querySelector('#manager-lock-screen .lock-card');
       const val = (input ? input.value : '').trim();
+      const activePasscode = getManagerPasscode();
 
-      // Accepted passcodes: ops2026, admin, 1234
-      if (val === 'ops2026' || val === 'admin' || val === '1234') {
+      // Accepted passcodes: current custom passcode, default ops2026, or master admin
+      if (val === activePasscode || val === 'admin' || val === DEFAULT_MANAGER_PASSCODE) {
         if (err) err.classList.add('hidden');
         sessionStorage.setItem('lalaops_manager_auth', 'true');
         updateSidebarManagerLockState();
@@ -1470,7 +1490,7 @@
     quickFillManagerPasscode: () => {
       const input = document.getElementById('manager-passcode-input');
       if (input) {
-        input.value = 'ops2026';
+        input.value = getManagerPasscode();
         window.LalaApp.handleManagerLogin(new Event('submit'));
       }
     },
@@ -1480,7 +1500,84 @@
       showToast('Console Locked', 'Manager Operations session locked.', 'info');
       renderManagerDashboard();
     },
-    togglePasswordVisibility: (inputId, btn) => {
+    openChangePasscodeModal: () => {
+      const modal = document.getElementById('change-passcode-modal');
+      const errBox = document.getElementById('change-passcode-error');
+      const currentInput = document.getElementById('change-passcode-current');
+      const newInput = document.getElementById('change-passcode-new');
+      const confirmInput = document.getElementById('change-passcode-confirm');
+
+      if (errBox) errBox.classList.add('hidden');
+      if (currentInput) currentInput.value = '';
+      if (newInput) newInput.value = '';
+      if (confirmInput) confirmInput.value = '';
+
+      if (modal) {
+        modal.classList.remove('hidden');
+        if (currentInput) currentInput.focus();
+      }
+    },
+    closeChangePasscodeModal: () => {
+      const modal = document.getElementById('change-passcode-modal');
+      if (modal) modal.classList.add('hidden');
+    },
+    submitChangePasscode: (e) => {
+      if (e) e.preventDefault();
+      const errBox = document.getElementById('change-passcode-error');
+      const errMsg = document.getElementById('change-passcode-error-msg');
+      const currentInput = document.getElementById('change-passcode-current');
+      const newInput = document.getElementById('change-passcode-new');
+      const confirmInput = document.getElementById('change-passcode-confirm');
+
+      const currentVal = (currentInput ? currentInput.value : '').trim();
+      const newVal = (newInput ? newInput.value : '').trim();
+      const confirmVal = (confirmInput ? confirmInput.value : '').trim();
+      const activePasscode = getManagerPasscode();
+
+      const showError = (msg) => {
+        if (errBox && errMsg) {
+          errMsg.innerText = msg;
+          errBox.classList.remove('hidden');
+        } else {
+          alert(msg);
+        }
+      };
+
+      // 1. Validate current passcode
+      if (currentVal !== activePasscode && currentVal !== 'admin' && currentVal !== DEFAULT_MANAGER_PASSCODE) {
+        showError('Current passcode is incorrect. Please re-enter.');
+        if (currentInput) { currentInput.focus(); currentInput.select(); }
+        return;
+      }
+
+      // 2. Validate new passcode length
+      if (newVal.length < 4) {
+        showError('New passcode must be at least 4 characters long.');
+        if (newInput) { newInput.focus(); }
+        return;
+      }
+
+      // 3. Validate confirmation match
+      if (newVal !== confirmVal) {
+        showError('New passcode and confirmation do not match.');
+        if (confirmInput) { confirmInput.focus(); confirmInput.select(); }
+        return;
+      }
+
+      // Success: Save new passcode
+      setManagerPasscode(newVal);
+      window.LalaApp.closeChangePasscodeModal();
+      showToast('Passcode Updated', 'Manager passcode successfully changed!', 'success');
+    },
+    resetPasscodeToDefault: () => {
+      if (confirm('Reset manager passcode back to original default ("ops2026")?')) {
+        localStorage.removeItem('lalaops_manager_passcode');
+        updateLockScreenHint();
+        window.LalaApp.closeChangePasscodeModal();
+        showToast('Passcode Restored', 'Manager passcode restored to default: ops2026', 'info');
+      }
+    },
+    togglePasscodeVisibility: (inputId, btn) => {
       const input = document.getElementById(inputId);
       if (!input) return;
       const isPassword = input.type === 'password';
@@ -1489,6 +1586,9 @@
         const icon = btn.querySelector('.material-symbols-outlined');
         if (icon) icon.innerText = isPassword ? 'visibility_off' : 'visibility';
       }
+    },
+    togglePasswordVisibility: (inputId, btn) => {
+      window.LalaApp.togglePasscodeVisibility(inputId, btn);
     },
     openTaskDetail: (id) => {
       const task = store.getById(id);
@@ -1561,6 +1661,7 @@
   // --- Event Listeners Initialization ---
   document.addEventListener('DOMContentLoaded', () => {
     updateSidebarManagerLockState();
+    updateLockScreenHint();
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
 

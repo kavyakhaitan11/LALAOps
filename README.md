@@ -41,11 +41,15 @@ $$\text{New Request} \longrightarrow \text{Needs Clarification} \longrightarrow 
 
 ---
 
-## 🔒 Manager Dashboard Password Lock
+## 🔒 Manager Dashboard Password Lock & Passcode Management
 
 The **Manager Operations Dashboard** is protected by an administrative lock screen to safeguard queue triage, team capacity distribution, and SLA escalations:
 
-- **Passcode Authentication**: Protected by passcode (`ops2026`, `admin`, or `1234`).
+- **Default Passcode**: Factory default is `ops2026` (with `admin` as fallback).
+- **Self-Service Passcode Change**: Click **"Change Passcode"** in the Manager Dashboard header (or **"Change"** directly on the lock screen) to set your own custom passcode at any time!
+- **Persistent Storage**: Custom passcodes are securely persisted in your browser (`localStorage`), surviving browser restarts and page refreshes.
+- **Dynamic Lock Screen Hint**: The lock screen automatically reflects your current active passcode.
+- **1-Click Reset to Default**: Forgotten passcode? Simply click **"Reset to default (ops2026)"** inside the change modal to restore factory defaults.
 - **Quick Fill & Unlock**: 1-click shortcut for rapid testing and demonstrations.
 - **Security Feedback**: Incorrect passcode triggers a smooth shake animation (`.shake-error`).
 - **Session Persistence**: Access remains active throughout the browsing session (`sessionStorage`).
@@ -79,8 +83,8 @@ d:\Krishna\
 ---
 
 ## 🛠️ How to Make Changes
-
-- **Change Manager Passcode**: Modify the accepted passcode values in `app.js` under `handleManagerLogin`.
+ 
+- **Change Manager Passcode**: Click **"Change Passcode"** on the dashboard header or lock screen to set a new passcode directly via the UI, or reset back to `ops2026` anytime.
 - **Add or edit demo requests**: Modify the `DEFAULT_TASKS` array in `app.js`.
 - **Change design tokens / colors**: Modify `styles.css` or the Tailwind configuration in `index.html`.
 - **Reset data**: Click the **"Reset Demo Pipeline"** button at the bottom of the sidebar to reload clean initial data.
