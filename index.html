@@ -148,9 +148,13 @@
         <span class="text-sky-700 font-semibold">Protected</span>
       </div>
       <p class="text-[10px] text-slate-500 mb-2">Waiting on Client does not count as internal overdue.</p>
-      <button onclick="window.LalaApp.resetData()" class="w-full py-1 px-2 rounded text-[11px] font-mono text-slate-500 hover:text-slate-800 bg-white border border-slate-200 hover:bg-slate-50 transition-colors flex items-center justify-center gap-1">
+      <button onclick="window.LalaApp.resetData()" class="w-full py-1 px-2 rounded text-[11px] font-mono text-slate-500 hover:text-slate-800 bg-white border border-slate-200 hover:bg-slate-50 transition-colors flex items-center justify-center gap-1 mb-1.5">
         <span class="material-symbols-outlined text-[14px]">restart_alt</span>
         <span>Reset Demo Pipeline</span>
+      </button>
+      <button onclick="window.LalaApp.openChangePasscodeModal()" class="w-full py-1 px-2 rounded text-[11px] font-mono text-primary hover:text-primary-hover bg-white border border-blue-200 hover:bg-blue-50/60 transition-colors flex items-center justify-center gap-1" title="Change Manager Dashboard Passcode">
+        <span class="material-symbols-outlined text-[14px]">key</span>
+        <span>Change Manager Passcode</span>
       </button>
     </div>
   </aside>
@@ -1103,16 +1107,16 @@
       </div>
     </div>
   <!-- CHANGE MANAGER PASSCODE MODAL -->
-  <div id="change-passcode-modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden animate-in fade-in zoom-in duration-150">
-      <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+  <div id="change-passcode-modal" onclick="if(event.target === this) window.LalaApp.closeChangePasscodeModal()" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in duration-150">
+      <div class="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-primary-container/20 text-primary flex items-center justify-center">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
             <span class="material-symbols-outlined text-[22px]">key</span>
           </div>
           <div>
             <h3 class="text-base font-bold text-slate-900">Change Manager Passcode</h3>
-            <p class="text-xs text-slate-500">Update the access code for Manager Operations Dashboard</p>
+            <p class="text-xs text-slate-500">Update access code for Manager Operations Console</p>
           </div>
         </div>
         <button type="button" onclick="window.LalaApp.closeChangePasscodeModal()" class="w-8 h-8 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors">
@@ -1121,26 +1125,42 @@
       </div>
 
       <form id="change-passcode-form" onsubmit="window.LalaApp.submitChangePasscode(event)" class="p-6 space-y-4">
+        <!-- Live Current Passcode Indicator -->
+        <div class="p-2.5 rounded-xl bg-blue-50/70 border border-blue-100 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-600">Active Passcode:</span>
+          <span id="change-passcode-active-badge" class="font-bold text-primary px-2 py-0.5 rounded bg-white border border-blue-200 shadow-2xs">ops2026</span>
+        </div>
+
         <div id="change-passcode-error" class="hidden p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
           <span class="material-symbols-outlined text-sm">error</span>
           <span id="change-passcode-error-msg">Incorrect current passcode</span>
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1.5" for="change-passcode-current">
-            Current Passcode *
-          </label>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="block text-xs font-bold text-slate-700" for="change-passcode-current">
+              Current Passcode
+            </label>
+            <span class="text-[10px] text-slate-400 font-mono">(Auto-filled)</span>
+          </div>
           <div class="relative">
             <input 
               type="password" 
               id="change-passcode-current" 
-              required 
               autocomplete="current-password"
               placeholder="Enter current passcode"
-              class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+              class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all pr-10"
             />
+            <button 
+              type="button" 
+              onclick="window.LalaApp.togglePasscodeVisibility('change-passcode-current', this)"
+              class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs p-1"
+              title="Toggle visibility"
+            >
+              <span class="material-symbols-outlined text-[18px]">visibility</span>
+            </button>
           </div>
-          <p class="text-[11px] text-slate-400 mt-1 font-mono">Default is <span class="text-slate-600 font-semibold">ops2026</span></p>
+          <p class="text-[11px] text-slate-400 mt-1 font-mono">Pre-filled with your active passcode for convenience</p>
         </div>
 
         <div>
@@ -1152,9 +1172,9 @@
               type="password" 
               id="change-passcode-new" 
               required 
-              minlength="4"
+              minlength="3"
               autocomplete="new-password"
-              placeholder="Enter new passcode (min. 4 characters)"
+              placeholder="Enter new passcode (min. 3 characters)"
               class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all pr-10"
             />
             <button 
@@ -1172,15 +1192,25 @@
           <label class="block text-xs font-bold text-slate-700 mb-1.5" for="change-passcode-confirm">
             Confirm New Passcode *
           </label>
-          <input 
-            type="password" 
-            id="change-passcode-confirm" 
-            required 
-            minlength="4"
-            autocomplete="new-password"
-            placeholder="Re-enter new passcode"
-            class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-          />
+          <div class="relative">
+            <input 
+              type="password" 
+              id="change-passcode-confirm" 
+              required 
+              minlength="3"
+              autocomplete="new-password"
+              placeholder="Re-enter new passcode"
+              class="w-full px-3 py-2.5 bg-white border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all pr-10"
+            />
+            <button 
+              type="button" 
+              onclick="window.LalaApp.togglePasscodeVisibility('change-passcode-confirm', this)"
+              class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs p-1"
+              title="Toggle visibility"
+            >
+              <span class="material-symbols-outlined text-[18px]">visibility</span>
+            </button>
+          </div>
         </div>
 
         <div class="pt-2 flex items-center justify-between border-t border-slate-100">
@@ -1188,7 +1218,7 @@
             type="button" 
             onclick="window.LalaApp.resetPasscodeToDefault()"
             class="text-[11px] text-slate-500 hover:text-rose-600 hover:underline flex items-center gap-1 font-medium transition-colors"
-            title="Reset back to ops2026"
+            title="Reset back to factory default ops2026"
           >
             <span class="material-symbols-outlined text-[14px]">restart_alt</span>
             <span>Reset to default (ops2026)</span>
@@ -1204,7 +1234,8 @@
             </button>
             <button 
               type="submit" 
-              class="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-semibold shadow-sm hover:shadow transition-all flex items-center gap-1.5"
+              id="change-passcode-submit-btn"
+              class="px-4 py-2 rounded-xl bg-primary hover:bg-primary-hover text-white text-xs font-semibold shadow-sm hover:shadow transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <span class="material-symbols-outlined text-[15px]">check</span>
               <span>Update Passcode</span>
@@ -1213,8 +1244,10 @@
         </div>
       </form>
     </div>
+  </div>
+
   <!-- COMPREHENSIVE TASK DETAIL MODAL -->
-  <div id="task-detail-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+  <div id="task-detail-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
     <div class="bg-white rounded-2xl max-w-3xl w-full shadow-2xl border border-slate-200 overflow-hidden my-auto animate-in fade-in zoom-in duration-150 flex flex-col max-h-[92vh]">
       <!-- Modal Header -->
       <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
