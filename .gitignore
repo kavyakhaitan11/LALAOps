@@ -1,0 +1,10 @@
+# Antigravity IDE application binaries
+Antigravity IDE/
+
+# Archive files
+*.zip
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini

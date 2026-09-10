@@ -1,0 +1,45 @@
+# Lala Tech LLC — Product Resource & MVP Specification
+**Prepared by:** Product Resource Department  
+**Purpose:** Turn an unclear operational problem into a validated, high-impact MVP
+
+---
+
+## 1. Discovery Approach & Working Assumptions
+Target Profile: Growing 15–40 person operations-heavy business.
+
+- **Task creation:** Requests arrive via WhatsApp, email, verbal handoff — no single intake point.
+- **Assignment:** Informal chat threads, unowned or loosely delegated.
+- **Status tracking:** Mental notes, fragmented spreadsheets, inconsistent updates.
+- **Key Failure Mode:** Tasks get buried, zero follow-up triggers, duplicate manual re-entry.
+
+---
+
+## 2. Problem Prioritization
+- **P0 (Critical):** Tasks created in chat/email get lost; no central intake & tracking.
+- **P1 (High):** Zero manager visibility into task status without manual chasing.
+- **P2 (Medium):** Manual re-entry of data across 2–3 spreadsheets.
+- **P3 (Low):** No audit or accountability trail.
+
+---
+
+## 3. Core MVP Definition & Target Workflows
+
+### Target Users:
+1. **Employees:** One place to see "what's mine, what's due, what's overdue".
+2. **Managers:** Bird's-eye view of overdue, stuck/blocked items, and weekly throughput without manual check-ins.
+
+### Core Screens & Features Required:
+1. **Manager Operations Dashboard (`/manager-dashboard`):**
+   - High-level KPIs: Overdue Tasks, Blocked/Stuck, Active Tasks, Weekly Throughput.
+   - Team workload & status distribution.
+   - Attention alerts (escalations, nearing SLA).
+2. **Team Task Board / Kanban & List View (`/tasks`):**
+   - Columns: Not Started, In Progress, Blocked, Completed.
+   - Mandatory Owner, Due Date, Priority, and Intake Source (WhatsApp, Email, Manual).
+   - Filterable by "My Tasks", assignee, priority, urgency.
+3. **Quick Intake Modal / Central Ingestion Hub (`/intake`):**
+   - Rapid logging modal / page with source tagging (WhatsApp copy-paste, Email capture, Direct).
+   - Auto-assignment and due date guardrails (no unassigned/dateless tasks).
+4. **My Workspace / Employee Execution View (`/my-tasks`):**
+   - Personal action list sorted by urgency/due date.
+   - Quick one-click status updates, blocker flagging with reason modal.

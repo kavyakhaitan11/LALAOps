@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {"darkMode":"class","theme":{"extend":{"colors":{"tertiary":"#003120","error-container":"#ffdad6","surface-tint":"#4059aa","secondary-fixed":"#cce5ff","surface-container-high":"#e2e7ff","inverse-surface":"#283044","inverse-on-surface":"#eef0ff","on-primary":"#ffffff","surface-container-low":"#f2f3ff","on-primary-fixed-variant":"#264191","on-primary-fixed":"#00164e","on-surface-variant":"#444651","outline":"#757682","background":"#faf8ff","tertiary-fixed-dim":"#68dba9","on-tertiary-container":"#4ac08f","on-surface":"#131b2e","surface-dim":"#d2d9f4","tertiary-fixed":"#85f8c4","surface-variant":"#dae2fd","inverse-primary":"#b6c4ff","tertiary-container":"#004a32","on-tertiary-fixed-variant":"#005137","surface":"#faf8ff","on-primary-container":"#90a8ff","primary-fixed-dim":"#b6c4ff","surface-container-highest":"#dae2fd","on-secondary":"#ffffff","on-tertiary-fixed":"#002114","on-secondary-fixed":"#001d31","secondary":"#006398","surface-bright":"#faf8ff","surface-container-lowest":"#ffffff","on-secondary-container":"#00476e","secondary-fixed-dim":"#93ccff","outline-variant":"#c5c5d3","on-error-container":"#93000a","secondary-container":"#5bb8fe","error":"#ba1a1a","primary-container":"#1e3a8a","on-error":"#ffffff","on-secondary-fixed-variant":"#004b73","primary":"#00236f","on-background":"#131b2e","on-tertiary":"#ffffff","surface-container":"#eaedff","primary-fixed":"#dce1ff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-base":"1rem","space-lg":"1.5rem","layout-margin-tablet":"1.5rem","space-sm":"0.5rem","layout-margin-mobile":"1rem","space-2xs":"0.125rem","gutter-default":"1rem","space-2xl":"3rem","space-xs":"0.25rem","space-md":"0.75rem","layout-margin-desktop":"2rem","space-xl":"2rem"},"fontFamily":{"body-md":["Inter"],"headline-xl":["Inter"],"body-sm":["Inter"],"body-lg":["Inter"],"code-sm":["JetBrains Mono"],"label-sm":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"headline-xl-mobile":["Inter"],"label-md":["Inter"]},"fontSize":{"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-xl":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0.005em","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"code-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-sm":["15px",{"lineHeight":"22px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-md":["18px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-xl-mobile":["26px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["13px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"500"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-16 px-space-base flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Lala Tech Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WEM3fTJxfvgEtMe3LmTr0_f9Klpi4eOgGffHO49JhJabHkpG8oZcwyuPTDwyi4kKtZMpV5jW5J9P2XzY06uz1oVtaj618WuCMG93myQk9D7vmbaz29XRha-Fek6IW8Bh0qvUb7MsqFFvN6e4pM5USJsMzKqcaBLSkn76ft430oTcTjmeepFpTlVA9TP982-Mi1TbhsSQxw50gAkcreUnT4LSzpe0UOi_hVw7wKPxp1m4yXlbc1bKQv-bLd"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">LalaOps</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Lala Tech LLC</span></div></div><div class="px-space-base py-space-sm"><div class="text-outline font-label-sm text-label-sm uppercase tracking-wider mb-space-xs px-space-xs">Operations Execution</div><nav class="flex flex-col gap-space-2xs" data-active-classes="bg-primary-container text-on-primary font-semibold shadow-sm"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg transition-colors bg-primary-container text-on-primary font-semibold shadow-sm" data-path="manager-dashboard" href="#"><span class="material-symbols-outlined text-[18px]">dashboard</span><span>Manager Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-md text-label-md" data-path="task-board" href="#"><span class="material-symbols-outlined text-[18px]">view_kanban</span><span>Task Board</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-md text-label-md" data-path="quick-intake" href="#"><span class="material-symbols-outlined text-[18px]">playlist_add</span><span>Quick Intake</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-md text-label-md" data-path="my-workspace" href="#"><span class="material-symbols-outlined text-[18px]">assignment_ind</span><span>My Workspace</span></a></nav></div></div><div class="p-space-base bg-surface-container-low/50 m-space-sm rounded-xl"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">System Status</span><span class="h-2 w-2 rounded-full bg-tertiary-fixed-dim ring-2 ring-tertiary-container/20"></span></div><div class="font-code-sm text-code-sm text-on-surface-variant flex justify-between items-center"><span>Cluster Pods</span><span class="text-tertiary-container font-medium">Healthy 99.9%</span></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-xl"><div class="flex-1 max-w-xl"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-outline text-[20px] pointer-events-none">search</span><input class="w-full h-9 pl-10 pr-space-base bg-surface-container-low rounded-lg text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search tasks, orders, assignees, or tags... (⌘K)" type="text"/><kbd class="absolute right-space-sm hidden sm:inline-block font-code-sm text-code-sm text-outline bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-sm">⌘K</kbd></div></div><div class="flex items-center gap-space-md ml-space-lg"><button class="h-9 px-space-md bg-primary-container hover:bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center gap-space-xs shadow-sm transition-all active:scale-[0.99]" type="button"><span class="material-symbols-outlined text-[18px]">add</span><span>Quick Intake</span></button><div class="h-6 w-px bg-surface-variant"></div><button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-error text-on-error font-label-sm text-[10px] ring-2 ring-surface-container-lowest">3</span></button><div class="flex items-center gap-space-sm pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo-E5PXu90YOprebgDH-95g23Nqgel76_fZvhPAqXbD-3uy9wpVyueWYbgzBTQW5lzRn7Yw1NXv9um_3cL835ATsjRyvA5fupXlvH1uLhrQoldJHejz7wlun_XYVpFwfg1ZgZ-43Jh0rHLqMCrYK3ZV4W2kYO3NRvF-_2BvdUCweoxM9TfgMkLAl01Y4FGXZx-6_SzgsYPivWCf2lpFLPDi00yMXGSTzsowfxJwMKU5B5X9IHyCOkU9w"/><div class="hidden md:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Sarah Jenkins</span><span class="font-label-sm text-label-sm text-outline leading-tight">Operations Lead</span></div></div></div></header><main class="relative pt-16 bg-background min-h-screen w-full px-layout-margin-desktop"><div class="flex flex-col w-full pb-space-2xl">
+<!-- Dashboard Context Header / Filter Sub-bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-md pt-space-lg pb-space-base">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-lg text-headline-lg text-on-surface">Operations Overview</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container text-primary font-code-sm text-code-sm">Shift A (EMEA/Americas)</span>
+</div>
+<div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-tertiary-fixed/30 text-tertiary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+<span>Realtime Auto-Chaser Active</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="inline-flex rounded-xl p-1 bg-surface-container-low shadow-sm">
+<button class="px-space-sm py-1 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm transition-all" type="button">All Squads (34)</button>
+<button class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">Logistics</button>
+<button class="px-space-sm py-1 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors" type="button">Legal &amp; Billing</button>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center gap-space-xs shadow-sm hover:bg-primary-container transition-all active:scale-[0.99]" id="trigger-batch-chase" type="button">
+<span class="material-symbols-outlined text-[16px]">notifications_active</span>
+<span>Nudge All At Risk</span>
+</button>
+</div>
+</div>
+<!-- KPI Metric Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md mb-space-lg">
+<!-- KPI 1: Overdue -->
+<div class="rounded-xl p-space-md bg-surface-container-lowest shadow-sm flex flex-col justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Overdue Tasks</span>
+<span class="px-2 py-0.5 rounded bg-error/10 text-error font-code-sm text-code-sm font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+          CRITICAL
+        </span>
+</div>
+<div class="mt-space-sm mb-space-xs">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-xl text-headline-xl text-error">4</span>
+<span class="font-label-sm text-label-sm text-error font-medium flex items-center">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>+1 today
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">Immediate ping required</p>
+</div>
+<div class="w-full bg-error-container/30 h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-error h-full rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+<!-- KPI 2: Blocked / Stuck -->
+<div class="rounded-xl p-space-md bg-surface-container-lowest shadow-sm flex flex-col justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Blocked / Stuck</span>
+<span class="px-2 py-0.5 rounded bg-secondary-container/30 text-on-secondary-container font-code-sm text-code-sm font-semibold">
+          STALLED
+        </span>
+</div>
+<div class="mt-space-sm mb-space-xs">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-xl text-headline-xl text-secondary">3</span>
+<span class="font-label-sm text-label-sm text-outline font-medium">Pending unblock</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">2 client wait, 1 supplier</p>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-secondary h-full rounded-full" style="width: 45%;"></div>
+</div>
+</div>
+<!-- KPI 3: In Flight -->
+<div class="rounded-xl p-space-md bg-surface-container-lowest shadow-sm flex flex-col justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">In Flight</span>
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed-variant font-code-sm text-code-sm font-semibold">
+          14 STAFF
+        </span>
+</div>
+<div class="mt-space-sm mb-space-xs">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-xl text-headline-xl text-on-surface">28</span>
+<span class="font-label-sm text-label-sm text-outline font-medium">Avg 2.0 / head</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">Optimal workload range</p>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-primary-container h-full rounded-full" style="width: 68%;"></div>
+</div>
+</div>
+<!-- KPI 4: Weekly Throughput -->
+<div class="rounded-xl p-space-md bg-surface-container-lowest shadow-sm flex flex-col justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Weekly Output</span>
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-code-sm text-code-sm font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[13px]">arrow_upward</span>18%
+        </span>
+</div>
+<div class="mt-space-sm mb-space-xs">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-xl text-headline-xl text-tertiary-container">42</span>
+<span class="font-label-sm text-label-sm text-outline font-medium">Completed</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">Vs 35 target this cycle</p>
+</div>
+<div class="w-full bg-tertiary-fixed/30 h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 88%;"></div>
+</div>
+</div>
+<!-- KPI 5: Intake Velocity -->
+<div class="rounded-xl p-space-md bg-surface-container-lowest shadow-sm flex flex-col justify-between group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Intake Today</span>
+<span class="font-code-sm text-code-sm text-outline">LIVE SYNC</span>
+</div>
+<div class="mt-space-sm mb-space-xs">
+<div class="flex items-baseline gap-space-sm">
+<span class="font-headline-xl text-headline-xl text-primary">11</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">New tickets</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline truncate">6 WA • 3 Email • 2 Desk</p>
+</div>
+<div class="flex gap-1 h-1.5 w-full mt-1">
+<div class="bg-tertiary-fixed-dim h-full rounded-l-full" style="width: 55%;" title="WhatsApp: 55%"></div>
+<div class="bg-secondary-container h-full" style="width: 27%;" title="Email: 27%"></div>
+<div class="bg-outline-variant h-full rounded-r-full" style="width: 18%;" title="Direct Desk: 18%"></div>
+</div>
+</div>
+</div>
+<!-- Attention Needed Alert Strip -->
+<div class="mb-space-lg flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-error text-[20px]">warning</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Attention Needed Immediately</span>
+<span class="ml-space-xs px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">2 Escalations</span>
+</div>
+<span class="font-code-sm text-code-sm text-outline">Triggered by SLA Guardian Engine</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-md">
+<!-- Escalation Item 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between transition-all hover:shadow-md">
+<div class="flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="p-2 rounded-lg bg-error-container/40 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">timer_off</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface">Bulk shipment customs clearance</span>
+<span class="font-code-sm text-code-sm text-outline bg-surface-container px-1.5 py-0.5 rounded">Order #4092</span>
+</div>
+<div class="flex items-center gap-space-sm mt-1 text-on-surface-variant font-body-sm text-body-sm flex-wrap">
+<span class="flex items-center gap-1 text-error font-medium">
+<span class="material-symbols-outlined text-[15px]">alarm</span>
+                  Overdue by 4 hours
+                </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-tertiary">chat</span>
+                  WhatsApp Client Text
+                </span>
+<span>•</span>
+<span>Assigned: <strong class="text-on-surface font-medium">Marcus Vance</strong></span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-sm bg-surface-container-low/40 rounded-lg px-space-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Last pinged: 35m ago via Slack bot</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-all" type="button">Reassign</button>
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md flex items-center gap-1 transition-all shadow-sm" onclick="this.innerText='Nudge Sent!'" type="button">
+<span class="material-symbols-outlined text-[16px]">touch_app</span>
+<span>Poke Assignee</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Escalation Item 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between transition-all hover:shadow-md">
+<div class="flex items-start justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<div class="p-2 rounded-lg bg-surface-container text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">front_hand</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface">Client contract revision</span>
+<span class="font-code-sm text-code-sm text-outline bg-surface-container px-1.5 py-0.5 rounded">Zenith Corp</span>
+</div>
+<div class="flex items-center gap-space-sm mt-1 text-on-surface-variant font-body-sm text-body-sm flex-wrap">
+<span class="px-2 py-0.5 rounded bg-secondary-fixed/50 text-on-secondary-fixed-variant font-label-sm text-label-sm font-semibold">
+                  Blocked: Legal Redline
+                </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-secondary">mail</span>
+                  Inbound Email
+                </span>
+<span>•</span>
+<span>Assigned: <strong class="text-on-surface font-medium">Elena Rostova</strong></span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-sm bg-surface-container-low/40 rounded-lg px-space-sm">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Stalled 18h • Legal review bottleneck</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-all" type="button">View Notes</button>
+<button class="px-3 py-1.5 rounded-lg bg-secondary text-on-secondary hover:bg-on-secondary-container font-label-md text-label-md flex items-center gap-1 transition-all shadow-sm" onclick="this.innerText='Escalated!'" type="button">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+<span>Fast-Track Legal</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Asymmetric Workspace Layout (60% / 40%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- LEFT COLUMN: 60% (7 cols out of 12) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Section: Workload & Accountability Heatmap -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Team Workload &amp; Accountability Heatmap</span>
+<span class="font-code-sm text-code-sm bg-surface-container px-2 py-0.5 rounded text-outline">14 Specialists Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Real-time task load balancing and blocker identification</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">sort</span>
+</button>
+</div>
+</div>
+<!-- Team Table / List -->
+<div class="flex flex-col divide-y divide-surface-container">
+<!-- Member 1: Marcus Vance (High risk) -->
+<div class="py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container-low/40 px-2 rounded-lg transition-colors">
+<div class="flex items-center gap-space-sm min-w-0 md:w-56">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="Close up professional portrait of Marcus Vance, mid twenties male logistics coordinator wearing navy blazer in crisp modern daylight office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm0q-lBXUv03_RHqTMxe8q-XB57p4eHOc-FrQgQ017jByqITvLlOHM3BmqcUWlH1TwyM5EYaHL1NHSK2TCbRXk7FDvP95RWqMfdOH7VXmiBDoldjzE7aWtHAdPwgnMs6CI6WsI7erYyD1amhX6ISUNdiDTDmgYPisb_V9UyVAyCParDJ6NWdtq4fSfrDc8ep-uV658LhfOylst3kISekztnY7DVWSj4ctzvn2zL9cXKLfoCFFZEpZ6Nw"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-error ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Marcus Vance</span>
+</div>
+<span class="font-code-sm text-code-sm text-outline truncate block">Cross-border Airfreight</span>
+</div>
+</div>
+<!-- Task count and capacity breakdown -->
+<div class="flex-1 max-w-xs px-2">
+<div class="flex items-center justify-between font-code-sm text-code-sm mb-1">
+<span class="text-on-surface-variant font-medium">5 Active Tasks</span>
+<span class="text-error font-medium">85% Capacity</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="bg-error h-full" style="width: 25%;" title="1 Overdue"></div>
+<div class="bg-primary-container h-full" style="width: 60%;" title="4 In Progress"></div>
+</div>
+</div>
+<!-- Status Pills & Quick Trigger -->
+<div class="flex items-center gap-space-sm justify-end">
+<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> 1 Overdue
+              </span>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-all" title="Send Slack Nudge" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+<!-- Member 2: Elena Rostova (Stalled) -->
+<div class="py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container-low/40 px-2 rounded-lg transition-colors">
+<div class="flex items-center gap-space-sm min-w-0 md:w-56">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="Studio headshot portrait of Elena Rostova, operations legal specialist with smart attire, confident expression, neutral bright studio backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAGEaJ7lvjt5BxHzPWr1PszO2KLh9DL8g0_j2X7GCwoLxS9lmX0yFTkvlqtu4xuvXaNDZhZ88Tu7MdnzNQApR0h2rhqGQgxuqozJMDKECY79I8tHZYHGJ0xdaLaSTAmvPbZcCBHwyEiEuxlGmCftYUoZ8iCPkn5lSoBIYKuHOnCOHLF_3y2GbYBv8DZ4hXaHs1FrFw9fBMl_lfMFpUEf7e4FEwKMns7PP2Azs2gH363ZfZN58a7lzYRw"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-secondary ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Elena Rostova</span>
+</div>
+<span class="font-code-sm text-code-sm text-outline truncate block">Commercial Contracts</span>
+</div>
+</div>
+<div class="flex-1 max-w-xs px-2">
+<div class="flex items-center justify-between font-code-sm text-code-sm mb-1">
+<span class="text-on-surface-variant font-medium">4 Active Tasks</span>
+<span class="text-secondary font-medium">65% Capacity</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="bg-secondary h-full" style="width: 25%;" title="1 Blocked"></div>
+<div class="bg-primary-container h-full" style="width: 50%;" title="3 In Progress"></div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm justify-end">
+<span class="px-2 py-0.5 rounded bg-surface-container text-secondary font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 1 Blocked
+              </span>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-all" title="View Blocker Details" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Member 3: David Kim (Balanced) -->
+<div class="py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container-low/40 px-2 rounded-lg transition-colors">
+<div class="flex items-center gap-space-sm min-w-0 md:w-56">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="Portrait photo of David Kim, tech operations analyst with spectacles in modern glass architectural office workspace with subtle slate lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu0IPlQrqmmZWH7NRVw6gv7bOgXU7upyfkIfod7Mib3i4g1_Hf3wteZF8Z8xXLIXw0XcsKNrpWLymcWYO6DId8x78tgZuuv7hd6wDtBKpZQAKCQMzdIN6kSbwlb5oP1_E2qiu15hqN75eED_dhuXinGzhtcEgslwtJjqYuqAn0pyOhpTdOoTspN68PxfENXIYVL5LWqwFl7AO6kPepp-kBm00_JABtNnNJphZ8IjYqFR1ak1AEvpGX_Q"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-tertiary-fixed-dim ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">David Kim</span>
+</div>
+<span class="font-code-sm text-code-sm text-outline truncate block">Fulfillment Ops</span>
+</div>
+</div>
+<div class="flex-1 max-w-xs px-2">
+<div class="flex items-center justify-between font-code-sm text-code-sm mb-1">
+<span class="text-on-surface-variant font-medium">3 Active Tasks</span>
+<span class="text-tertiary-container font-medium">45% Capacity</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="bg-tertiary-container h-full" style="width: 100%;"></div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm justify-end">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed/40 text-tertiary font-label-sm text-label-sm font-semibold">
+                On Schedule
+              </span>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-all" title="Assign Incoming Task" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+</button>
+</div>
+</div>
+<!-- Member 4: Priya Patel (High Volume) -->
+<div class="py-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-sm hover:bg-surface-container-low/40 px-2 rounded-lg transition-colors">
+<div class="flex items-center gap-space-sm min-w-0 md:w-56">
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="Headshot of Priya Patel, mid-career operational lead woman in beige silk workwear, modern corporate office background with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWjohzscRNygKdNJ8wAEqhP--kozkjrnEjV0Yd3bRZi8pZPGaFdF7Dwfyrswv0glVlliYbQt-l6IGdVUtM04XIm6aGzczs8RhC6YiF9xP5_nbn1fyrbJ-Y9CgImdUZkpqLD-W8Abl0u_zOdKPSf3ZPzRFF9my5uK17wxIN618VYs9dluyzExjloN8Sg08wdNdU-643szwTU5DVHdgXBu6JUtOGzdc9S3s94t9t3SgujOboVzRGQYuqiA"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-tertiary ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Priya Patel</span>
+</div>
+<span class="font-code-sm text-code-sm text-outline truncate block">Supplier Integration</span>
+</div>
+</div>
+<div class="flex-1 max-w-xs px-2">
+<div class="flex items-center justify-between font-code-sm text-code-sm mb-1">
+<span class="text-on-surface-variant font-medium">6 Active Tasks</span>
+<span class="text-primary font-medium">92% High Load</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="bg-primary-container h-full" style="width: 100%;"></div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm justify-end">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">
+                Near Max Limit
+              </span>
+<button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-all" title="Offload Items" type="button">
+<span class="material-symbols-outlined text-[18px]">call_split</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Recent Auto-Reminders Triggered -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-sm">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Recent Auto-Reminders Triggered</span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Autonomous chasing logs &amp; delivery receipts</p>
+</div>
+<span class="font-code-sm text-code-sm text-outline">Last 6 Hours</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-label-sm uppercase">
+<th class="py-2.5 px-space-sm rounded-l-lg">Time</th>
+<th class="py-2.5 px-space-sm">Assignee</th>
+<th class="py-2.5 px-space-sm">Channel</th>
+<th class="py-2.5 px-space-sm">Task Reference</th>
+<th class="py-2.5 px-space-sm rounded-r-lg text-right">Recipient Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="py-3 px-space-sm font-code-sm text-code-sm text-outline">14:22</td>
+<td class="py-3 px-space-sm font-medium text-on-surface">Marcus Vance</td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 font-code-sm text-code-sm text-tertiary">
+<span class="material-symbols-outlined text-[14px]">chat</span> WhatsApp
+                  </span>
+</td>
+<td class="py-3 px-space-sm font-medium text-on-surface">#4092 Customs Clearance</td>
+<td class="py-3 px-space-sm text-right">
+<span class="px-2 py-0.5 rounded bg-surface-container text-outline font-code-sm text-code-sm">Seen • No Reply</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="py-3 px-space-sm font-code-sm text-code-sm text-outline">13:45</td>
+<td class="py-3 px-space-sm font-medium text-on-surface">Elena Rostova</td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 font-code-sm text-code-sm text-secondary">
+<span class="material-symbols-outlined text-[14px]">mail</span> Slack DM
+                  </span>
+</td>
+<td class="py-3 px-space-sm font-medium text-on-surface">Zenith Contract Legal Redline</td>
+<td class="py-3 px-space-sm text-right">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed/30 text-tertiary font-code-sm text-code-sm">Awaiting Legal (Ack)</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="py-3 px-space-sm font-code-sm text-code-sm text-outline">11:10</td>
+<td class="py-3 px-space-sm font-medium text-on-surface">Carlos Gomez</td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 font-code-sm text-code-sm text-primary">
+<span class="material-symbols-outlined text-[14px]">sms</span> SMS Prompt
+                  </span>
+</td>
+<td class="py-3 px-space-sm font-medium text-on-surface">BOM Spec Confirmation #1102</td>
+<td class="py-3 px-space-sm text-right">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary font-code-sm text-code-sm">Resolved in 4m</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="py-3 px-space-sm font-code-sm text-code-sm text-outline">09:30</td>
+<td class="py-3 px-space-sm font-medium text-on-surface">Sarah Lin</td>
+<td class="py-3 px-space-sm">
+<span class="inline-flex items-center gap-1 font-code-sm text-code-sm text-tertiary">
+<span class="material-symbols-outlined text-[14px]">chat</span> WhatsApp
+                  </span>
+</td>
+<td class="py-3 px-space-sm font-medium text-on-surface">Vendor Invoicing Discrepancy</td>
+<td class="py-3 px-space-sm text-right">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary font-code-sm text-code-sm">Status Changed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: 40% (5 cols out of 12) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Intake Source Velocity Card & Donut Chart -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<span class="font-headline-md text-headline-md text-on-surface">Intake Source Velocity</span>
+<p class="font-body-sm text-body-sm text-outline">Ticket injection distribution (24h)</p>
+</div>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-surface-container text-primary font-medium">+38% vol</span>
+</div>
+<div class="flex items-center gap-space-lg my-space-sm">
+<!-- Inline Donut SVG Visual -->
+<div class="relative w-36 h-36 flex-shrink-0 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<!-- Background Circle -->
+<circle cx="18" cy="18" fill="none" r="15.915" stroke="#eaedff" stroke-width="3.5"></circle>
+<!-- WhatsApp: 55% -> stroke-dasharray: 55 45 -->
+<circle cx="18" cy="18" fill="none" r="15.915" stroke="#004a32" stroke-dasharray="55 45" stroke-dashoffset="0" stroke-linecap="round" stroke-width="3.8"></circle>
+<!-- Email: 30% -> stroke-dasharray: 30 70 -->
+<circle cx="18" cy="18" fill="none" r="15.915" stroke="#006398" stroke-dasharray="30 70" stroke-dashoffset="-55" stroke-linecap="round" stroke-width="3.8"></circle>
+<!-- Direct Desk: 15% -> stroke-dasharray: 15 85 -->
+<circle cx="18" cy="18" fill="none" r="15.915" stroke="#757682" stroke-dasharray="15 85" stroke-dashoffset="-85" stroke-linecap="round" stroke-width="3.8"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center text-center">
+<span class="font-headline-lg text-headline-lg text-on-surface leading-none">11</span>
+<span class="font-label-sm text-label-sm text-outline uppercase mt-0.5">Tickets</span>
+</div>
+</div>
+<!-- Channel Stats breakdown -->
+<div class="flex flex-col gap-space-sm flex-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span>
+<span class="font-body-md text-body-md text-on-surface">WhatsApp Clients</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-label-md text-label-md font-semibold text-on-surface">6</span>
+<span class="font-code-sm text-code-sm text-outline">(55%)</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-body-md text-body-md text-on-surface">Inbound Email</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-label-md text-label-md font-semibold text-on-surface">3</span>
+<span class="font-code-sm text-code-sm text-outline">(30%)</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+<span class="font-body-md text-body-md text-on-surface">Direct Desk Intake</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-label-md text-label-md font-semibold text-on-surface">2</span>
+<span class="font-code-sm text-code-sm text-outline">(15%)</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-md p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-tertiary">bolt</span>
+            Avg Intake to Triage Latency
+          </span>
+<span class="font-code-sm text-code-sm text-on-surface font-semibold">1.8 minutes</span>
+</div>
+</div>
+<!-- Stuck Items Resolution Queue -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">Stuck Items Resolution</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary font-code-sm text-code-sm font-semibold">3 Actions</span>
+</div>
+<button class="font-label-md text-label-md text-secondary hover:underline">Batch Resolve</button>
+</div>
+<p class="font-body-sm text-body-sm text-outline mb-space-md">1-click managerial clearance bypass for team bottlenecks</p>
+<!-- Queue List -->
+<div class="flex flex-col gap-space-sm">
+<!-- Stuck Item 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs transition-all hover:bg-surface-container">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface">EuroCargo Port Release #882</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="font-code-sm text-code-sm text-outline">Assigned: Marcus Vance</span>
+<span>•</span>
+<span class="text-error font-medium">Stuck 14h on Supplier Doc</span>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm font-medium shadow-sm transition-all" onclick="this.closest('.p-space-sm').classList.add('opacity-40'); this.innerText='Approved';" type="button">
+                  Approve Bypass
+                </button>
+</div>
+</div>
+<!-- Stuck Item 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs transition-all hover:bg-surface-container">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Apex Ltd Credit Increase Request</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="font-code-sm text-code-sm text-outline">Assigned: Elena Rostova</span>
+<span>•</span>
+<span class="text-secondary font-medium">Waiting Client Finance Head</span>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-secondary text-on-secondary hover:bg-on-secondary-container font-label-sm text-label-sm font-medium shadow-sm transition-all" onclick="this.closest('.p-space-sm').classList.add('opacity-40'); this.innerText='Pushed';" type="button">
+                  Manager Poke
+                </button>
+</div>
+</div>
+<!-- Stuck Item 3 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-xs transition-all hover:bg-surface-container">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Customs SKU Mapping for Q3 Batch</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="font-code-sm text-code-sm text-outline">Assigned: David Kim</span>
+<span>•</span>
+<span class="text-outline font-medium">Internal Tax Signoff</span>
+</div>
+</div>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest hover:bg-surface text-on-surface font-label-sm text-label-sm font-medium shadow-sm transition-all" onclick="this.closest('.p-space-sm').classList.add('opacity-40'); this.innerText='Signed';" type="button">
+                  Instant Sign
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Managerial Quick Note Box -->
+<div class="mt-space-md pt-space-md border-t border-surface-container flex items-center gap-space-sm">
+<input class="flex-1 h-9 px-space-sm bg-surface-container-low rounded-lg text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary-container" placeholder="Direct broadcast note to active shift..." type="text"/>
+<button class="h-9 px-space-sm rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[18px]">broadcast_on_personal</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Quick Micro-Interaction for "Nudge All At Risk" button
+  const batchNudgeBtn = document.getElementById('trigger-batch-chase');
+  if (batchNudgeBtn) {
+    batchNudgeBtn.addEventListener('click', () => {
+      const originalHtml = batchNudgeBtn.innerHTML;
+      batchNudgeBtn.disabled = true;
+      batchNudgeBtn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">refresh</span><span>Dispatched to 4 Assignees</span>';
+      setTimeout(() => {
+        batchNudgeBtn.innerHTML = '<span class="material-symbols-outlined text-[16px]">done_all</span><span>All Pings Sent</span>';
+        setTimeout(() => {
+          batchNudgeBtn.innerHTML = originalHtml;
+          batchNudgeBtn.disabled = false;
+        }, 2500);
+      }, 800);
+    });
+  }
+</script></main></div></body></html>
